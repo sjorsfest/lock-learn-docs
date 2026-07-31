@@ -1,9 +1,10 @@
 # site/ — the Lock&Learn marketing site
 
 Static marketing site for the app family plus the legal pages. No build
-step, no framework: plain HTML/CSS/JS, deployable as-is to GitHub Pages
-(the live pages the apps link to are served from the separate
-`lock-learn-docs` repo; copy this directory's contents there to publish).
+step, no framework: plain HTML/CSS/JS, served by GitHub Pages from the
+separate `lock-learn-docs` repo (the live pages the apps link to). This
+directory is the source of truth: publish with `make publish-site` from the
+repo root, which mirrors site/ into that repo and pushes one commit.
 
 ## Layout
 
