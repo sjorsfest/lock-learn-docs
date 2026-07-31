@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en" data-app="trivia">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lock&amp;Learn — trivia on your Lock Screen</title>
+<meta name="description" content="A trivia question on every screen-wake. Guess, tap, and reveal the verified fact behind the answer. Free on iOS.">
+<meta property="og:title" content="Lock&amp;Learn — trivia on your Lock Screen">
+<meta property="og:description" content="Every glance at your phone, a question worth answering. Trivia on your Lock Screen with the real fact behind every answer.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0F2C'/%3E%3Cpath d='M22 30v-6a10 10 0 0 1 20 0v6' stroke='%2345D6A0' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Crect x='18' y='30' width='28' height='22' rx='7' fill='%2345D6A0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="wordmark" href="../">
+      <svg width="17" height="21" viewBox="0 0 44 58" fill="none">
+        <path d="M8 24 V16 A14 14 0 0 1 36 16 V24" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+        <rect x="4" y="24" width="36" height="30" rx="9" fill="white"/>
+      </svg>
+      LOCK&amp;LEARN
+    </a>
+    <nav class="top-nav">
+      <a href="./" class="here"><span class="dot" style="background:#45D6A0"></span>Trivia</a>
+      <a href="../chinese/"><span class="dot" style="background:#F5926B"></span>Chinese</a>
+      <a href="../japanese/"><span class="dot" style="background:#78BEEB"></span>Japanese</a>
+      <a href="../support.html" class="keep">Support</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================================================================ hero -->
+<section class="hero">
+  <div class="hero-bg"><div class="wall-layer on"></div></div>
+  <div class="hero-vignette"></div>
+
+  <div class="shell hero-grid">
+    <div>
+      <span class="kicker-line"><span class="dot"></span>TRIVIA ON YOUR LOCK SCREEN</span>
+      <h1 class="display">Every glance, a question <em>worth answering</em></h1>
+      <p class="hero-sub">
+        A short question waits on your widget. You take a guess, and one tap
+        reveals the answer, along with the true, carefully checked fact behind
+        it. No feeds. No streak anxiety. No accounts.
+      </p>
+
+      <div class="store-row">
+        <!-- TODO: point at the real App Store page once the listing is live -->
+        <a class="store-btn" href="https://apps.apple.com/app/lock-learn-trivia-widget/id0000000000">
+          <svg width="22" height="26" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span class="txt"><span class="small">Download on the</span><span class="big">App Store</span></span>
+        </a>
+        <span class="search-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="white" stroke-width="2.2"/><path d="M15.5 15.5 L20.5 20.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+          Search &ldquo;Lock&amp;Learn&rdquo;
+        </span>
+      </div>
+    </div>
+
+    <div class="phone-stage">
+      <div class="phone">
+        <div class="screen"></div>
+        <div class="island"></div>
+        <div style="position:relative">
+          <div class="lock-icon">
+            <svg width="20" height="26" viewBox="0 0 44 58" fill="none">
+              <path d="M8 24 V16 A14 14 0 0 1 36 16 V24" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+              <rect x="4" y="24" width="36" height="30" rx="9" fill="white"/>
+            </svg>
+          </div>
+          <div class="lock-date">Friday 31 July</div>
+          <div class="lock-clock">9:41</div>
+          <div class="lockword">
+            <div class="wchip"><span class="dot"></span>SPACE</div>
+            <div class="wq">On which planets does it rain diamonds?</div>
+            <div class="whint">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 4 v8 M9 12 c0 3 2 4 4 4 h3" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".8"/><path d="M14 13 l3 3 l-3 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".8"/></svg>
+              Tap to reveal the answer
+            </div>
+          </div>
+        </div>
+        <div class="lock-bottom">
+          <div class="lock-circle"><svg width="13" height="13" viewBox="0 0 42 42" fill="none"><path d="M14 4 h14 v8 l-4 6 v20 h-6 V18 l-4 -6 Z" fill="white" opacity=".85"/></svg></div>
+          <div class="lock-circle"><svg width="15" height="12" viewBox="0 0 46 38" fill="none"><rect x="2" y="8" width="42" height="28" rx="7" fill="white" opacity=".85"/><path d="M14 8 l4 -6 h10 l4 6 Z" fill="white" opacity=".85"/><circle cx="23" cy="22" r="8" fill="#101322"/></svg></div>
+        </div>
+        <div class="home-bar"></div>
+      </div>
+      <div>
+        <div class="float-card f1"><div class="fq">Which sea creature has three hearts?</div><div class="fm">OCEAN</div></div>
+        <div class="float-card f2"><div class="fq">How long is a day on Venus?</div><div class="fm">SPACE</div></div>
+        <div class="float-card f3"><div class="fq">Which muscle never rests?</div><div class="fm">HUMAN BODY</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ the loop -->
+<section class="section">
+  <div class="shell">
+    <p class="sec-kicker reveal">THE LOOP</p>
+    <h2 class="sec-title reveal">Guess first. That&rsquo;s the trick.</h2>
+    <p class="sec-sub reveal">
+      Recall before reveal is what makes things stick. Lock&amp;Learn builds
+      that tiny moment into a screen you were going to look at anyway.
+    </p>
+
+    <div class="grid-3">
+      <div class="wcard reveal d1">
+        <div class="chip"><span class="dot"></span>SPACE &middot; ON YOUR WIDGET</div>
+        <div class="q">On which planets does it rain diamonds?</div>
+        <div class="hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 4 v8 M9 12 c0 3 2 4 4 4 h3" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".6"/><path d="M14 13 l3 3 l-3 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".6"/></svg>
+          Take your best guess first
+        </div>
+      </div>
+      <div class="wcard reveal d2">
+        <div class="chip"><span class="dot"></span>ONE TAP AWAY</div>
+        <div class="blur-wrap">
+          <div class="blurred">It rains diamonds on Neptune and Uranus</div>
+          <div class="veil">
+            <svg width="12" height="15" viewBox="0 0 44 58" fill="none"><path d="M8 24 V16 A14 14 0 0 1 36 16 V24" stroke="white" stroke-width="5.5" stroke-linecap="round"/><rect x="4" y="24" width="36" height="30" rx="9" fill="white"/></svg>
+            TAP TO REVEAL
+          </div>
+        </div>
+        <div class="hint">Committing to a guess is the two seconds that make it stick</div>
+      </div>
+      <div class="wcard reveal d3">
+        <div class="chip"><span class="dot"></span>THE ANSWER</div>
+        <div class="meaning">It rains diamonds on Neptune and Uranus</div>
+        <div class="body">Deep inside the ice giants, crushing pressure squeezes carbon out of methane and compresses it into diamonds that sink toward the core.</div>
+        <div class="source">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="white" stroke-width="1.8" opacity=".55"/><path d="M8 12.2 l2.6 2.6 L16 9.5" stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/></svg>
+          via NASA
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ facts mode -->
+<section class="section tightened">
+  <div class="shell">
+    <div class="plus-panel reveal">
+      <div>
+        <p class="sec-kicker" style="text-align:left">PREFER JUST THE FACTS?</p>
+        <h3 style="margin-top:12px">One tap flips every widget from questions to quiet discoveries</h3>
+        <p class="lead">
+          Facts mode drops the quiz entirely: every glance becomes a small
+          &ldquo;did you know&rdquo; instead of a challenge. Your call, any time,
+          in settings.
+        </p>
+      </div>
+      <div class="wcard" style="box-shadow:none">
+        <div class="chip"><span class="dot"></span>WIDGET MODE</div>
+        <div class="seg">
+          <span>As facts</span>
+          <span class="on">As questions</span>
+          <div class="thumb"></div>
+        </div>
+        <div class="hint" style="margin-top:12px">Questions show first. Tap any card in the app to flip to its answer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ topics -->
+<section class="section">
+  <div class="shell">
+    <p class="sec-kicker reveal">ONLY THE TOPICS YOU PICK</p>
+    <h2 class="sec-title reveal">From Space to Sports</h2>
+    <p class="sec-sub reveal">
+      The questions rotate through everything you switch on, and new ones
+      land every month.
+    </p>
+    <div class="packs reveal">
+      <span class="pack">Space</span>
+      <span class="pack">History</span>
+      <span class="pack">Human Body</span>
+      <span class="pack">Ocean</span>
+      <span class="pack">Psychology</span>
+      <span class="pack">Food</span>
+      <span class="pack">Animals</span>
+      <span class="pack">Planet Earth</span>
+      <span class="pack">Science</span>
+      <span class="pack">Sports</span>
+      <span class="pack">Arts &amp; Music</span>
+      <span class="pack">Inventions</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ calm -->
+<section class="section tightened">
+  <div class="shell">
+    <p class="sec-kicker reveal">MADE TO BE CALM</p>
+    <h2 class="sec-title reveal">No feeds. No accounts. No noise.</h2>
+    <div class="grid-4">
+      <div class="tile reveal d1">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 3 C8 3 5 6 5 10 v4 l-2 3 h18 l-2 -3 v-4 c0 -4 -3 -7 -7 -7 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 4 L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h4>Notifications opt-in</h4>
+        <p>Off by default, and they stay that way until you say otherwise.</p>
+      </div>
+      <div class="tile reveal d2">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 11 V8 a4 4 0 0 1 8 0 v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h4>Everything on-device</h4>
+        <p>Nothing is collected. Your saves and streaks never leave your phone.</p>
+      </div>
+      <div class="tile reveal d3">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 21 C7 17 4 13.5 4 9.8 A4.8 4.8 0 0 1 12 6.4 A4.8 4.8 0 0 1 20 9.8 C20 13.5 17 17 12 21 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h4>Save what you love</h4>
+        <p>Keep the questions and facts that made you look twice, and revisit them any time.</p>
+      </div>
+      <div class="tile reveal d3">
+        <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 4 v8 l5 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h4>Your rhythm</h4>
+        <p>Questions rotate on your schedule, from every 15 minutes to every few hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ plus -->
+<section class="section tightened">
+  <div class="shell">
+    <div class="plus-panel reveal">
+      <div>
+        <p class="sec-kicker" style="text-align:left">LOCK&amp;LEARN+</p>
+        <h3 style="margin-top:12px">Every topic opens with a free preview</h3>
+        <p class="lead">
+          Another question unlocks each day at no cost. Lock&amp;Learn+ opens
+          every topic at once, along with every topic we add next.
+        </p>
+        <ul class="plus-list">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 l4.5 4.5 L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>All topics, unlocked at once</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 l4.5 4.5 L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Every future topic included</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 l4.5 4.5 L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>New questions every month</li>
+        </ul>
+      </div>
+      <div class="price-cards">
+        <div class="price hot">
+          <div><span class="pl">Yearly</span><span class="ps">With a free trial to start</span></div>
+          <span class="badge">FREE TRIAL</span>
+        </div>
+        <div class="price">
+          <div><span class="pl">Lifetime</span><span class="ps">Pay once, keep it for good</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ CTA -->
+<section class="cta-final">
+  <div class="glowup"></div>
+  <div class="shell">
+    <h2 class="reveal">Lock your phone.<br>Learn something anyway.</h2>
+    <p class="sub reveal">Free on iOS, with new questions landing every month.</p>
+    <div class="store-row reveal">
+      <a class="store-btn" href="https://apps.apple.com/app/lock-learn-trivia-widget/id0000000000">
+        <svg width="22" height="26" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span class="txt"><span class="small">Download on the</span><span class="big">App Store</span></span>
+      </a>
+      <span class="search-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="white" stroke-width="2.2"/><path d="M15.5 15.5 L20.5 20.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Search &ldquo;Lock&amp;Learn&rdquo;
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <p class="foot-brand">
+        <svg width="15" height="19" viewBox="0 0 44 58" fill="none"><path d="M8 24 V16 A14 14 0 0 1 36 16 V24" stroke="white" stroke-width="5.5" stroke-linecap="round"/><rect x="4" y="24" width="36" height="30" rx="9" fill="white"/></svg>
+        LOCK&amp;LEARN
+      </p>
+      <p class="foot-note">Learn something at every glance.<br>Made independently, with care.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h5>APPS</h5>
+        <a href="./">Lock&amp;Learn</a>
+        <a href="../chinese/">Lock&amp;Learn Chinese</a>
+        <a href="../japanese/">Lock&amp;Learn Japanese</a>
+      </div>
+      <div class="foot-col">
+        <h5>HELP</h5>
+        <a href="../support.html">Support</a>
+        <a href="mailto:jeroenmeij12@gmail.com">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>LEGAL</h5>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
