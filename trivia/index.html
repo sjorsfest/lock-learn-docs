@@ -3,15 +3,92 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lock&amp;Learn — trivia on your Lock Screen</title>
-<meta name="description" content="A trivia question on every screen-wake. Guess, tap, and reveal the verified fact behind the answer. Free on iOS.">
-<meta property="og:title" content="Lock&amp;Learn — trivia on your Lock Screen">
+<title>Daily Trivia Widget for Your iPhone Lock Screen | Lock&amp;Learn</title>
+<meta name="description" content="A trivia question on your iPhone Lock Screen every time it wakes. Guess, tap, and reveal the verified fact behind the answer. Topics from Space to Sports. Free on iOS, no account needed.">
+<link rel="canonical" href="https://sjorsfest.github.io/lock-learn-docs/trivia/">
+<meta name="theme-color" content="#0E0F2C">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lock&amp;Learn">
+<meta property="og:url" content="https://sjorsfest.github.io/lock-learn-docs/trivia/">
+<meta property="og:title" content="Daily Trivia Widget for Your iPhone Lock Screen | Lock&amp;Learn">
 <meta property="og:description" content="Every glance at your phone, a question worth answering. Trivia on your Lock Screen with the real fact behind every answer.">
+<meta property="og:image" content="https://sjorsfest.github.io/lock-learn-docs/assets/og/trivia.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lock&amp;Learn, the trivia widget for the iPhone Lock Screen">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daily Trivia Widget for Your iPhone Lock Screen | Lock&amp;Learn">
+<meta name="twitter:description" content="Every glance at your phone, a question worth answering. Trivia on your Lock Screen with the real fact behind every answer.">
+<meta name="twitter:image" content="https://sjorsfest.github.io/lock-learn-docs/assets/og/trivia.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0F2C'/%3E%3Cpath d='M22 30v-6a10 10 0 0 1 20 0v6' stroke='%2345D6A0' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Crect x='18' y='30' width='28' height='22' rx='7' fill='%2345D6A0'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "@id": "https://sjorsfest.github.io/lock-learn-docs/trivia/#app",
+      "name": "Lock&Learn",
+      "alternateName": "Lock&Learn Trivia Widget",
+      "url": "https://sjorsfest.github.io/lock-learn-docs/trivia/",
+      "operatingSystem": "iOS",
+      "applicationCategory": "EducationalApplication",
+      "description": "A daily trivia widget for the iPhone Lock Screen. A question waits on every screen-wake; you guess, tap, and reveal the verified fact behind the answer. Topics from Space to Sports, with new questions every month.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "Lock&Learn", "url": "https://sjorsfest.github.io/lock-learn-docs/" },
+      "inLanguage": "en",
+      "teaches": "General knowledge and trivia across Space, History, Human Body, Ocean, Psychology, Food, Animals, Planet Earth, Science, Sports, Arts and Music, and Inventions"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Lock&Learn", "item": "https://sjorsfest.github.io/lock-learn-docs/" },
+        { "@type": "ListItem", "position": 2, "name": "Trivia", "item": "https://sjorsfest.github.io/lock-learn-docs/trivia/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I add the trivia widget to my iPhone Lock Screen?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Install Lock&Learn, then touch and hold your Lock Screen, tap Customize, tap the widget area, and choose Lock&Learn. A question will wait there every time your screen wakes. There is a Home Screen widget too: touch and hold an empty area, tap the plus button, and search for Lock&Learn." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Lock&Learn free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The app is free on iOS: every topic opens with a free preview and another question unlocks daily. Lock&Learn+ is an optional upgrade that opens every topic at once, offered as a yearly plan with a free trial or a one-time lifetime purchase." }
+        },
+        {
+          "@type": "Question",
+          "name": "What trivia topics are included?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Space, History, Human Body, Ocean, Psychology, Food, Animals, Planet Earth, Science, Sports, Arts and Music, and Inventions. You switch on only the topics you want, and new questions land every month." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the answers verified?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Every question ships with the fact behind the answer, checked against reliable sources before it reaches your widget, and the reveal names where it came from." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I read facts without the quiz?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. One tap in settings flips every widget from questions to plain facts, so each glance becomes a quiet discovery instead of a quiz." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need an account?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. There are no accounts and no tracking. Streaks, saves and progress live on your phone and nowhere else, and notifications are opt-in." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -211,6 +288,42 @@
           <div><span class="pl">Lifetime</span><span class="ps">Pay once, keep it for good, future topics included</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ 05 faq -->
+<section class="sec band" id="faq">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <span class="m tint">05 &middot; Questions</span>
+      <h2>Asked and<br><em>answered</em></h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>How do I add the trivia widget to my iPhone Lock Screen?</summary>
+        <p class="a">Install Lock&amp;Learn, then touch and hold your Lock Screen, tap Customize, tap the widget area, and choose Lock&amp;Learn. A question will wait there every time your screen wakes. There is a Home Screen widget too: touch and hold an empty area, tap the plus button, and search for Lock&amp;Learn.</p>
+      </details>
+      <details>
+        <summary>Is Lock&amp;Learn free?</summary>
+        <p class="a">Yes. The app is free on iOS: every topic opens with a free preview and another question unlocks daily. Lock&amp;Learn+ is an optional upgrade that opens every topic at once, offered as a yearly plan with a free trial or a one-time lifetime purchase.</p>
+      </details>
+      <details>
+        <summary>What trivia topics are included?</summary>
+        <p class="a">Space, History, Human Body, Ocean, Psychology, Food, Animals, Planet Earth, Science, Sports, Arts and Music, and Inventions. You switch on only the topics you want, and new questions land every month.</p>
+      </details>
+      <details>
+        <summary>Are the answers verified?</summary>
+        <p class="a">Every question ships with the fact behind the answer, checked against reliable sources before it reaches your widget, and the reveal names where it came from.</p>
+      </details>
+      <details>
+        <summary>Can I read facts without the quiz?</summary>
+        <p class="a">Yes. One tap in settings flips every widget from questions to plain facts, so each glance becomes a quiet discovery instead of a quiz.</p>
+      </details>
+      <details>
+        <summary>Do I need an account?</summary>
+        <p class="a">No. There are no accounts and no tracking. Streaks, saves and progress live on your phone and nowhere else, and notifications are opt-in. More in the <a href="../privacy.html">Privacy Policy</a> or on the <a href="../support.html">Support page</a>.</p>
+      </details>
     </div>
   </div>
 </section>

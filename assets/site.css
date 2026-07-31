@@ -557,6 +557,30 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 }
 .packs-note { margin-top: 22px; }
 
+/* ------------------------------------------------------------------ faq */
+.faq { margin-top: 52px; max-width: 780px; border-top: 1px solid var(--hair-2); }
+.faq details { border-bottom: 1px solid var(--hair-2); }
+.faq summary {
+  cursor: pointer; list-style: none;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 28px;
+  padding: 24px 0;
+  font-family: var(--serif);
+  font-size: 19px; font-weight: 600; letter-spacing: -.2px; line-height: 1.35;
+  transition: color .25s;
+}
+.faq summary:hover { color: var(--tint); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: '+';
+  font-family: var(--mono); font-size: 16px; font-weight: 400;
+  color: var(--tint); flex: none;
+  transition: transform .3s var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq .a { padding: 0 44px 26px 0; font-size: 14.5px; line-height: 1.75; color: var(--ink-2); max-width: 660px; }
+.faq .a a { color: var(--tint); }
+.faq .a a:hover { text-decoration: underline; }
+
 /* ------------------------------------------------------------------ plus panel */
 .plus-panel {
   margin-top: 52px;

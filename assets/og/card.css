@@ -1,0 +1,52 @@
+/* Shared styles for the og:image card sources (baked to 1200x630 PNGs by bake.sh). */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+  --serif: 'Source Serif 4', Georgia, serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --hanzi: var(--serif);
+  font-family: var(--serif);
+  color: rgba(255,255,255,.96);
+  background:
+    radial-gradient(90% 120% at 78% 8%, rgba(var(--glow), .28), rgba(var(--glow), 0) 65%),
+    linear-gradient(160deg, var(--w0) 0%, var(--w1) 48%, var(--w2) 100%);
+  display: flex; align-items: stretch;
+}
+body[data-app="home"], body[data-app="trivia"] {
+  --w0: #3A3F9E; --w1: #23265F; --w2: #0E0F2C; --glow: 150,162,255; --tint: #45D6A0;
+}
+body[data-app="chinese"] {
+  --w0: #6E2418; --w1: #38110A; --w2: #140705; --glow: 255,138,100; --tint: #F5926B;
+  --hanzi: 'Noto Serif SC', var(--serif);
+}
+body[data-app="japanese"] {
+  --w0: #1F5474; --w1: #0F2C42; --w2: #060D16; --glow: 120,190,235; --tint: #78BEEB;
+  --hanzi: 'Noto Serif JP', var(--serif);
+}
+.left {
+  flex: 1.15; display: flex; flex-direction: column; justify-content: space-between;
+  padding: 64px 24px 60px 72px;
+}
+.wordmark {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--mono); font-size: 22px; font-weight: 500; letter-spacing: .22em;
+}
+h1 {
+  font-size: 74px; font-weight: 600; line-height: 1.08; letter-spacing: -.02em;
+  max-width: 620px;
+}
+h1 em { font-style: italic; font-weight: 500; color: var(--tint); }
+.kicker {
+  font-family: var(--mono); font-size: 19px; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--tint);
+}
+.right {
+  flex: .85; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; padding-right: 40px;
+}
+.glyph {
+  font-family: var(--hanzi); font-size: 210px; font-weight: 600; line-height: 1;
+  text-shadow: 0 18px 110px rgba(var(--glow), .55);
+}
+.glyph.q { font-size: 300px; font-style: italic; color: var(--tint); }
+.reading { font-size: 30px; color: rgba(255,255,255,.72); }
