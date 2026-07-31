@@ -1,7 +1,9 @@
 /* ------------------------------------------------------------------
    Lock&Learn marketing site.
    One design system, three app worlds. The canvas is each app's dark
-   "lockwall" (mirrors teaser/config.py and store/*/shots.html). Three
+   "lockwall" (mirrors teaser/config.py and the store shots.html files;
+   note: never write a glob with star-slash in these comments, it
+   terminates the comment block and corrupts the next rule). Three
    voices: content speaks serif, the interface whispers sans, meta is
    mono. Sections are distinct rooms: numbered heads, tinted bands, and
    product cards that show the widget rather than describe it. Worlds
@@ -122,13 +124,29 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .top-nav a:hover { color: var(--ink); }
 .top-nav a.here { color: var(--tint); }
+.top-nav .e { letter-spacing: 0; margin-right: 7px; font-size: 12px; }
+
+/* ------------------------------------------------------------------ prose
+   Long-form pages (support) in the same voice as the rest of the site. */
+.prose { max-width: 680px; margin-top: 8px; }
+.prose h3 {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 600; letter-spacing: -.2px;
+  margin-top: 44px;
+  padding-top: 26px; border-top: 1px solid var(--hair-2);
+}
+.prose p { font-size: 15px; line-height: 1.75; color: var(--ink-2); margin-top: 12px; }
+.prose a { color: var(--tint); }
+.prose a:hover { text-decoration: underline; }
 
 /* ------------------------------------------------------------------ hero */
 .hero {
   position: relative; overflow: hidden;
-  min-height: 92svh;
+  min-height: 100svh;
   display: flex; align-items: center;
-  padding: 130px 0 90px;
+  /* symmetric padding keeps the flex-centered content on the true middle;
+     92px also clears the 72px fixed header */
+  padding: 92px 0;
 }
 .hero-bg, .hero-bg .wall-layer { position: absolute; inset: 0; }
 .hero-bg .wall-layer {
@@ -148,8 +166,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   gap: clamp(32px, 5vw, 80px); align-items: center;
 }
 
-/* masked line reveal — headlines rise out of their own baseline */
-.lines .l { display: block; overflow: hidden; }
+/* masked line reveal — headlines rise out of their own baseline.
+   The mask window extends below the baseline so descenders (g, y, j)
+   are not cropped by the tight line-height; the negative margin gives
+   the extra window back so line spacing stays optically identical. */
+.lines .l { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
 .lines .l > span {
   display: block;
   transform: translateY(114%);
