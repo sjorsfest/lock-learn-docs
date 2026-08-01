@@ -1,7 +1,7 @@
 /* Lock&Learn site behaviors. Kept deliberately small:
    header state, masked line reveals, reveal-on-scroll, a light hero
    parallax, and (family page only) the world switcher that crossfades
-   the hero between the four app worlds. */
+   the hero between the five app worlds. */
 
 (function () {
   // ---- header ----------------------------------------------------------
@@ -100,8 +100,21 @@
         { cls: 'f3', html: '<div class="fh" lang="ar">لُغَة</div><div class="fr">lugha</div><div class="fm">language</div>' },
       ],
     },
+    korean: {
+      line: 'TOPIK vocabulary from beginner to advanced. Hangul with its romanization; the meaning on the tap. <a href="korean/">Explore &rarr;</a>',
+      widget: `
+        <div class="wchip"><span class="dot"></span>TOPIK I</div>
+        <div class="whanzi" lang="ko">하늘</div>
+        <div class="wreading">haneul</div>
+        <div class="whint">Tap for the meaning</div>`,
+      floats: [
+        { cls: 'f1', html: '<div class="fh" lang="ko">바다</div><div class="fr">bada</div><div class="fm">sea</div>' },
+        { cls: 'f2', html: '<div class="fh" lang="ko">노래</div><div class="fr">norae</div><div class="fm">song</div>' },
+        { cls: 'f3', html: '<div class="fh" lang="ko">꿈</div><div class="fr">kkum</div><div class="fm">a dream</div>' },
+      ],
+    },
   };
-  const ORDER = ['trivia', 'chinese', 'japanese', 'arabic'];
+  const ORDER = ['trivia', 'chinese', 'japanese', 'arabic', 'korean'];
 
   const layers = hero.querySelectorAll('.wall-layer');
   const tabs = hero.querySelectorAll('.w-tab');

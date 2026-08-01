@@ -4,7 +4,7 @@
 set -e
 cd "$(dirname "$0")"
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-for name in home trivia chinese japanese arabic; do
+for name in home trivia chinese japanese arabic korean; do
   "$CHROME" --headless=new --disable-gpu --hide-scrollbars \
     --window-size=1200,630 --virtual-time-budget=10000 \
     --screenshot="$name.png" "file://$PWD/$name.src.html" 2>/dev/null

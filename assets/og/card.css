@@ -23,6 +23,10 @@ body[data-app="japanese"] {
   --w0: #1F5474; --w1: #0F2C42; --w2: #060D16; --glow: 120,190,235; --tint: #78BEEB;
   --hanzi: 'Noto Serif JP', var(--serif);
 }
+body[data-app="korean"] {
+  --w0: #2450A8; --w1: #12295E; --w2: #060E21; --glow: 124,165,240; --tint: #7CA5F0;
+  --hanzi: 'Noto Serif KR', var(--serif);
+}
 body[data-app="arabic"] {
   --w0: #166355; --w1: #0B332C; --w2: #041511; --glow: 95,215,196; --tint: #4FD1BE;
   --hanzi: 'Noto Naskh Arabic', var(--serif);

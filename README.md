@@ -11,22 +11,25 @@ repo root, which mirrors site/ into that repo and pushes one commit.
 ```
 index.html            Family overview. Editorial hero with a world switcher:
                       the numbered tabs (01 Trivia / 02 Chinese / 03 Japanese
-                      / 04 Arabic) crossfade the wallpaper, glow and the
-                      phone's lock-screen widget between apps; it auto-cycles
-                      until the visitor clicks.
+                      / 04 Arabic / 05 Korean) crossfade the wallpaper, glow
+                      and the phone's lock-screen widget between apps; it
+                      auto-cycles until the visitor clicks.
 trivia/index.html     Lock&Learn (trivia) in its indigo/mint world.
 chinese/index.html    Lock&Learn Chinese in its cinnabar world.
 japanese/index.html   Lock&Learn Japanese in its aizome indigo world.
 arabic/index.html     Lock&Learn Arabic in its oasis teal world.
+korean/index.html     Lock&Learn Korean in its taegeuk cobalt world.
 assets/site.css       Shared design system. App worlds are themed with
-                      [data-app="trivia|chinese|japanese|arabic"], which sets
-                      the wall gradient, glow, accent tint and headword font.
+                      [data-app="trivia|chinese|japanese|arabic|korean"],
+                      which sets the wall gradient, glow, accent tint and
+                      headword font. Laptop-width viewports (981 to 1760px)
+                      render the whole page at 90% via a zoom media query.
 assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
                       hero parallax, and the index world switcher.
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
-sitemap.xml           All eight pages with lastmod dates. Bump lastmod for
+sitemap.xml           All nine pages with lastmod dates. Bump lastmod for
                       pages you change before publishing.
 robots.txt            Allow-all plus the sitemap URL. Note: on the current
                       GitHub Pages project URL it is served under
@@ -44,15 +47,16 @@ assets/og/            og:image cards (1200x630 PNG per page) plus their
 Editorial and type-led: numbered sections with hairline rules, content set
 directly on the canvas (no card chrome), a film-grain overlay for
 atmosphere. Three voices, mirroring the apps and teasers: content speaks
-serif (Source Serif 4; Noto Serif SC/JP for CJK headwords, Noto Naskh
+serif (Source Serif 4; Noto Serif SC/JP/KR for CJK headwords, Noto Naskh
 Arabic for Arabic ones), the interface whispers sans (Inter), meta labels
 are mono (IBM Plex Mono). Wall gradients, glows and accents come from
 `teaser/config.py` and each app's `Brand.swift` (registry:
-`shared/brand/README.md`); the Arabic world (oasis teal, not yet in the
-teaser config) derives from its `Brand.swift` accent and icon gradients.
-Fonts load from Google Fonts; CJK families are served as unicode-range
-slices so only used glyphs download. Arabic headword slots get a taller
-line box in site.css so stacked harakat never clip.
+`shared/brand/README.md`); the Arabic (oasis teal) and Korean (taegeuk
+cobalt) worlds, not yet in the teaser config, derive from their
+`Brand.swift` accents and icon gradients. Fonts load from Google Fonts;
+CJK families are served as unicode-range slices so only used glyphs
+download. Arabic headword slots get a taller line box in site.css so
+stacked harakat never clip.
 
 Sample words and facts on the pages are real entries from
 `shared/content/*/facts.json`. Keep them real: never invent content for
