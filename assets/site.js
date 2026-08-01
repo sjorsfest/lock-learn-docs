@@ -1,7 +1,7 @@
 /* Lock&Learn site behaviors. Kept deliberately small:
    header state, masked line reveals, reveal-on-scroll, a light hero
    parallax, and (family page only) the world switcher that crossfades
-   the hero between the three app worlds. */
+   the hero between the four app worlds. */
 
 (function () {
   // ---- header ----------------------------------------------------------
@@ -87,8 +87,21 @@
         { cls: 'f3', html: '<div class="fh">友達</div><div class="fr">ともだち</div><div class="fm">friend</div>' },
       ],
     },
+    arabic: {
+      line: 'Modern Standard Arabic from A1 to C2, fully vocalized, romanized on every card. <a href="arabic/">Explore &rarr;</a>',
+      widget: `
+        <div class="wchip"><span class="dot"></span>CEFR A2</div>
+        <div class="whanzi" lang="ar">قَمَر</div>
+        <div class="wreading">qamar</div>
+        <div class="whint">Tap for the meaning</div>`,
+      floats: [
+        { cls: 'f1', html: '<div class="fh" lang="ar">ماء</div><div class="fr">māʾ</div><div class="fm">water</div>' },
+        { cls: 'f2', html: '<div class="fh" lang="ar">باب</div><div class="fr">bāb</div><div class="fm">door</div>' },
+        { cls: 'f3', html: '<div class="fh" lang="ar">لُغَة</div><div class="fr">lugha</div><div class="fm">language</div>' },
+      ],
+    },
   };
-  const ORDER = ['trivia', 'chinese', 'japanese'];
+  const ORDER = ['trivia', 'chinese', 'japanese', 'arabic'];
 
   const layers = hero.querySelectorAll('.wall-layer');
   const tabs = hero.querySelectorAll('.w-tab');
