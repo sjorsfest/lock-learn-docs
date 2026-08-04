@@ -259,7 +259,46 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
   transition: transform .25s var(--ease), box-shadow .25s;
 }
 .btn-store:hover { transform: translateY(-2px); box-shadow: 0 22px 54px rgba(0,0,0,.5); }
+.btn-store.secondary {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--hair); box-shadow: none;
+}
+.btn-store.secondary:hover {
+  border-color: rgba(255,255,255,.32); background: rgba(255,255,255,.05);
+  box-shadow: none;
+}
 .store-note { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+
+/* store modal (Android "coming soon" notice) */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 80;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  background: rgba(6,7,12,.72); backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden; transition: opacity .25s var(--ease);
+}
+.modal-overlay.on { opacity: 1; visibility: visible; }
+.modal-card {
+  position: relative; max-width: 380px; width: 100%;
+  padding: 36px 34px; border-radius: 20px;
+  background: #101119; border: 1px solid var(--hair);
+  box-shadow: 0 40px 90px rgba(0,0,0,.55);
+  transform: translateY(10px) scale(.98); transition: transform .3s var(--ease);
+}
+.modal-overlay.on .modal-card { transform: translateY(0) scale(1); }
+.modal-card h3 {
+  font-family: var(--serif); font-size: 22px; font-weight: 500;
+  line-height: 1.35; margin-top: 14px;
+}
+.modal-card p { font-size: 14.5px; line-height: 1.65; color: var(--ink-2); margin-top: 12px; }
+.modal-close {
+  position: absolute; top: 18px; right: 18px;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-3); font-size: 20px; line-height: 1;
+  transition: color .2s, background .2s;
+}
+.modal-close:hover { color: var(--ink); background: rgba(255,255,255,.08); }
 
 /* ------------------------------------------------------------------ phone */
 .phone-stage { position: relative; display: flex; justify-content: center; will-change: transform; }

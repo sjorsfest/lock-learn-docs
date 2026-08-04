@@ -25,7 +25,8 @@ assets/site.css       Shared design system. App worlds are themed with
                       headword font. Laptop-width viewports (981 to 1760px)
                       render the whole page at 90% via a zoom media query.
 assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
-                      hero parallax, and the index world switcher.
+                      hero parallax, the index world switcher, and the
+                      Google Play "coming soon" modal.
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
@@ -97,5 +98,12 @@ every element immediately. Useful for full-page screenshots:
 
 The App Store buttons still point at the `id0000000000` placeholder URLs
 (same as `teaser/config.py`). Search for `apps.apple.com` in this directory
-and drop in the real listing URLs once live. Android is referenced only as
-an "in the works" note until the twins ship.
+and drop in the real listing URLs once live.
+
+Each page's two `.store-row`s also carry a secondary "Get it on Google Play"
+button (`.btn-store.secondary`, `data-open-modal="play"`). It does not link
+anywhere yet: clicking it opens the `#playModal` overlay (markup at the end
+of `<body>`, behavior in `assets/site.js`) announcing the August 15 Android
+launch. Once the Play Store listing is live, swap the `<button>` for an `<a
+href>` to the real listing and delete the modal markup, its trigger
+attribute, and the modal JS block in `site.js`.

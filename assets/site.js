@@ -45,6 +45,34 @@
     }, { passive: true });
   }
 
+  // ---- Play Store "coming soon" modal -----------------------------------
+  const playModal = document.getElementById('playModal');
+  if (playModal) {
+    const openers = document.querySelectorAll('[data-open-modal="play"]');
+    const closers = playModal.querySelectorAll('[data-close-modal]');
+    let lastFocused = null;
+
+    const open = (e) => {
+      e.preventDefault();
+      lastFocused = document.activeElement;
+      playModal.hidden = false;
+      requestAnimationFrame(() => playModal.classList.add('on'));
+      playModal.querySelector('.modal-close').focus();
+    };
+    const close = () => {
+      playModal.classList.remove('on');
+      setTimeout(() => { playModal.hidden = true; }, 250);
+      if (lastFocused) lastFocused.focus();
+    };
+
+    openers.forEach((el) => el.addEventListener('click', open));
+    closers.forEach((el) => el.addEventListener('click', close));
+    playModal.addEventListener('click', (e) => { if (e.target === playModal) close(); });
+    addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && playModal.classList.contains('on')) close();
+    });
+  }
+
   // ---- world switcher (family page only) -------------------------------
   const hero = document.getElementById('worldHero');
   if (!hero) return;
