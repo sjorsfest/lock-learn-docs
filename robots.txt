@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sjorsfest.github.io/lock-learn-docs/sitemap.xml
+Sitemap: https://locklearn.xyz/sitemap.xml
