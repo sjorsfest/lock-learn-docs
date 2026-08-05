@@ -32,11 +32,12 @@ privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
 sitemap.xml           All nine pages with lastmod dates. Bump lastmod for
                       pages you change before publishing.
-robots.txt            Allow-all plus the sitemap URL. Note: on the current
-                      GitHub Pages project URL it is served under
-                      /lock-learn-docs/ where crawlers ignore it; it becomes
-                      effective once the site moves to a custom domain. The
-                      sitemap still works when submitted via Search Console.
+robots.txt            Allow-all plus the sitemap URL.
+CNAME                 The custom domain (locklearn.xyz) for GitHub Pages.
+                      It must live here: publish-site mirrors site/ with
+                      rsync --delete, so a CNAME kept only in the pages
+                      repo gets wiped on every publish (which silently
+                      took the domain offline until this file was added).
 assets/og/            og:image cards (1200x630 PNG per page) plus their
                       *.src.html sources, card.css, and bake.sh which renders
                       the sources with headless Chrome. Edit a source, run
@@ -73,11 +74,12 @@ with a visible "05 - Questions" FAQ section (`#faq`); its text and the
 `FAQPage` JSON-LD in the same page's head are the same answers and must be
 edited together, and every claim in them must stay true to the apps.
 
-The canonical base URL is `https://sjorsfest.github.io/lock-learn-docs/`
-and appears in canonicals, og:url/og:image, JSON-LD, robots.txt and
-sitemap.xml. When the site moves to a custom domain (locklearn.xyz is
-registered but still parked), search-and-replace that base across `site/`,
-set the CNAME in the lock-learn-docs repo, and re-verify in Search Console.
+The site is served from locklearn.xyz (via `site/CNAME`), but the canonical
+base URL baked into the pages is still
+`https://sjorsfest.github.io/lock-learn-docs/`: it appears in canonicals,
+og:url/og:image, JSON-LD, robots.txt and sitemap.xml. Pending task:
+search-and-replace that base across `site/` with `https://locklearn.xyz/`
+and re-verify in Search Console.
 
 Never fabricate ratings, review counts or download numbers in structured
 data; add `aggregateRating` only if real App Store ratings exist.
