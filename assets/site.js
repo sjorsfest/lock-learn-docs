@@ -45,31 +45,31 @@
     }, { passive: true });
   }
 
-  // ---- Play Store "coming soon" modal -----------------------------------
-  const playModal = document.getElementById('playModal');
-  if (playModal) {
-    const openers = document.querySelectorAll('[data-open-modal="play"]');
-    const closers = playModal.querySelectorAll('[data-close-modal]');
+  // ---- launch-announcement modal (App Store + Play Store buttons) -------
+  const launchModal = document.getElementById('launchModal');
+  if (launchModal) {
+    const openers = document.querySelectorAll('[data-open-modal="launch"]');
+    const closers = launchModal.querySelectorAll('[data-close-modal]');
     let lastFocused = null;
 
     const open = (e) => {
       e.preventDefault();
       lastFocused = document.activeElement;
-      playModal.hidden = false;
-      requestAnimationFrame(() => playModal.classList.add('on'));
-      playModal.querySelector('.modal-close').focus();
+      launchModal.hidden = false;
+      requestAnimationFrame(() => launchModal.classList.add('on'));
+      launchModal.querySelector('.modal-close').focus();
     };
     const close = () => {
-      playModal.classList.remove('on');
-      setTimeout(() => { playModal.hidden = true; }, 250);
+      launchModal.classList.remove('on');
+      setTimeout(() => { launchModal.hidden = true; }, 250);
       if (lastFocused) lastFocused.focus();
     };
 
     openers.forEach((el) => el.addEventListener('click', open));
     closers.forEach((el) => el.addEventListener('click', close));
-    playModal.addEventListener('click', (e) => { if (e.target === playModal) close(); });
+    launchModal.addEventListener('click', (e) => { if (e.target === launchModal) close(); });
     addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && playModal.classList.contains('on')) close();
+      if (e.key === 'Escape' && launchModal.classList.contains('on')) close();
     });
   }
 

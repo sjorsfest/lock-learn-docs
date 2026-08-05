@@ -26,7 +26,7 @@ assets/site.css       Shared design system. App worlds are themed with
                       render the whole page at 90% via a zoom media query.
 assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
                       hero parallax, the index world switcher, and the
-                      Google Play "coming soon" modal.
+                      launch-date modal both store buttons open.
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
@@ -96,14 +96,12 @@ every element immediately. Useful for full-page screenshots:
 
 ## Before publishing
 
-The App Store buttons still point at the `id0000000000` placeholder URLs
-(same as `teaser/config.py`). Search for `apps.apple.com` in this directory
-and drop in the real listing URLs once live.
-
-Each page's two `.store-row`s also carry a secondary "Get it on Google Play"
-button (`.btn-store.secondary`, `data-open-modal="play"`). It does not link
-anywhere yet: clicking it opens the `#playModal` overlay (markup at the end
-of `<body>`, behavior in `assets/site.js`) announcing the August 15 Android
-launch. Once the Play Store listing is live, swap the `<button>` for an `<a
-href>` to the real listing and delete the modal markup, its trigger
-attribute, and the modal JS block in `site.js`.
+Each page's two `.store-row`s carry an App Store button and a secondary
+Google Play button (`.btn-store.secondary`). Neither links anywhere yet:
+both are `<button data-open-modal="launch">` elements that open the
+`#launchModal` overlay (markup at the end of `<body>`, behavior in
+`assets/site.js`) announcing the August 15 launch on both stores. Once the
+listings are live, swap each `<button>` for an `<a href>` to the real
+listing (`teaser/config.py` still holds `id0000000000` placeholder Apple
+URLs to update at the same time) and delete the modal markup, the trigger
+attributes, and the modal JS block in `site.js`.
