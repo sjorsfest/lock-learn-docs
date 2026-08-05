@@ -70,6 +70,12 @@
 [data-app="arabic"] .float-card .fh,
 [data-app="arabic"] .wcard .hanzi,
 [data-app="arabic"] .app-card .showpiece .hz { line-height: 1.5; }
+[data-app="spanish"] {
+  --w0: #7A5210; --w1: #3F2A08; --w2: #171003;
+  --glow: 240,178,92;
+  --tint: #ECA84B;
+  --hanzi: var(--serif);
+}
 
 html { scroll-behavior: smooth; }
 body {
@@ -506,7 +512,7 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 /* ------------------------------------------------------------------ family cards (index) */
 .family {
   margin-top: 52px;
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
 }
 .app-card {
   position: relative; overflow: hidden;

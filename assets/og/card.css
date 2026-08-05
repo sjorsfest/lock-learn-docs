@@ -33,6 +33,9 @@ body[data-app="arabic"] {
 }
 /* harakat stack above the letters; give the glyph a taller line box */
 body[data-app="arabic"] .glyph { font-size: 180px; line-height: 1.45; }
+body[data-app="spanish"] {
+  --w0: #7A5210; --w1: #3F2A08; --w2: #171003; --glow: 240,178,92; --tint: #ECA84B;
+}
 .left {
   flex: 1.15; display: flex; flex-direction: column; justify-content: space-between;
   padding: 64px 24px 60px 72px;

@@ -11,16 +11,18 @@ repo root, which mirrors site/ into that repo and pushes one commit.
 ```
 index.html            Family overview. Editorial hero with a world switcher:
                       the numbered tabs (01 Trivia / 02 Chinese / 03 Japanese
-                      / 04 Arabic / 05 Korean) crossfade the wallpaper, glow
-                      and the phone's lock-screen widget between apps; it
-                      auto-cycles until the visitor clicks.
+                      / 04 Arabic / 05 Korean / 06 Spanish) crossfade the
+                      wallpaper, glow and the phone's lock-screen widget
+                      between apps; it auto-cycles until the visitor clicks.
 trivia/index.html     Lock&Learn (trivia) in its indigo/mint world.
 chinese/index.html    Lock&Learn Chinese in its cinnabar world.
 japanese/index.html   Lock&Learn Japanese in its aizome indigo world.
 arabic/index.html     Lock&Learn Arabic in its oasis teal world.
 korean/index.html     Lock&Learn Korean in its taegeuk cobalt world.
+spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
+                      reading line anywhere: Spanish cards have none).
 assets/site.css       Shared design system. App worlds are themed with
-                      [data-app="trivia|chinese|japanese|arabic|korean"],
+                      [data-app="trivia|chinese|japanese|arabic|korean|spanish"],
                       which sets the wall gradient, glow, accent tint and
                       headword font. Laptop-width viewports (981 to 1760px)
                       render the whole page at 90% via a zoom media query.
@@ -30,7 +32,7 @@ assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
-sitemap.xml           All nine pages with lastmod dates. Bump lastmod for
+sitemap.xml           All ten pages with lastmod dates. Bump lastmod for
                       pages you change before publishing.
 robots.txt            Allow-all plus the sitemap URL.
 CNAME                 The custom domain (locklearn.xyz) for GitHub Pages.
@@ -53,9 +55,11 @@ serif (Source Serif 4; Noto Serif SC/JP/KR for CJK headwords, Noto Naskh
 Arabic for Arabic ones), the interface whispers sans (Inter), meta labels
 are mono (IBM Plex Mono). Wall gradients, glows and accents come from
 `teaser/config.py` and each app's `Brand.swift` (registry:
-`shared/brand/README.md`); the Arabic (oasis teal) and Korean (taegeuk
-cobalt) worlds, not yet in the teaser config, derive from their
-`Brand.swift` accents and icon gradients. Fonts load from Google Fonts;
+`shared/brand/README.md`); the Arabic (oasis teal), Korean (taegeuk
+cobalt) and Spanish (saffron amber) worlds, not yet in the teaser config,
+derive from their brand identities (`Brand.swift` accents and icon
+gradients; for Spanish, whose app is not yet cloned, the blueprint's
+identity table). Fonts load from Google Fonts;
 CJK families are served as unicode-range slices so only used glyphs
 download. Arabic headword slots get a taller line box in site.css so
 stacked harakat never clip.

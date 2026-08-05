@@ -1,7 +1,7 @@
 /* Lock&Learn site behaviors. Kept deliberately small:
    header state, masked line reveals, reveal-on-scroll, a light hero
    parallax, and (family page only) the world switcher that crossfades
-   the hero between the five app worlds. */
+   the hero between the six app worlds. */
 
 (function () {
   // ---- header ----------------------------------------------------------
@@ -141,8 +141,20 @@
         { cls: 'f3', html: '<div class="fh" lang="ko">꿈</div><div class="fr">kkum</div><div class="fm">a dream</div>' },
       ],
     },
+    spanish: {
+      line: 'Spanish words and expressions from A1 to C2, straight from the Cervantes curriculum. <a href="spanish/">Explore &rarr;</a>',
+      widget: `
+        <div class="wchip"><span class="dot"></span>CEFR A2</div>
+        <div class="whanzi" lang="es">luna</div>
+        <div class="whint">Tap for the meaning</div>`,
+      floats: [
+        { cls: 'f1', html: '<div class="fh" lang="es">agua</div><div class="fm">water</div>' },
+        { cls: 'f2', html: '<div class="fh" lang="es">puerta</div><div class="fm">door</div>' },
+        { cls: 'f3', html: '<div class="fh" lang="es">música</div><div class="fm">music</div>' },
+      ],
+    },
   };
-  const ORDER = ['trivia', 'chinese', 'japanese', 'arabic', 'korean'];
+  const ORDER = ['trivia', 'chinese', 'japanese', 'arabic', 'korean', 'spanish'];
 
   const layers = hero.querySelectorAll('.wall-layer');
   const tabs = hero.querySelectorAll('.w-tab');
