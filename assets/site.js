@@ -45,7 +45,7 @@
     }, { passive: true });
   }
 
-  // ---- launch-announcement modal (App Store + Play Store buttons) -------
+  // ---- launch-announcement modal (App Store button) ---------------------
   const launchModal = document.getElementById('launchModal');
   if (launchModal) {
     const openers = document.querySelectorAll('[data-open-modal="launch"]');

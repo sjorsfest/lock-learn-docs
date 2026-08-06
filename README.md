@@ -101,12 +101,16 @@ every element immediately. Useful for full-page screenshots:
 
 ## Before publishing
 
-Each page's two `.store-row`s carry an App Store button and a secondary
-Google Play button (`.btn-store.secondary`). Neither links anywhere yet:
-both are `<button data-open-modal="launch">` elements that open the
-`#launchModal` overlay (markup at the end of `<body>`, behavior in
-`assets/site.js`) announcing the August 15 launch on both stores. Once the
+Each page's two `.store-row`s carry an App Store button. It doesn't link
+anywhere yet: it's a `<button data-open-modal="launch">` element that opens
+the `#launchModal` overlay (markup at the end of `<body>`, behavior in
+`assets/site.js`) announcing the August 15 App Store launch. Once the
 listings are live, swap each `<button>` for an `<a href>` to the real
 listing (`teaser/config.py` still holds `id0000000000` placeholder Apple
 URLs to update at the same time) and delete the modal markup, the trigger
 attributes, and the modal JS block in `site.js`.
+
+The site is iOS-only on purpose for now: the Android builds aren't ready,
+so Google Play buttons and "iOS & Android" copy were removed until they
+are. The `.btn-store.secondary` style in `site.css` is kept for when they
+come back.
