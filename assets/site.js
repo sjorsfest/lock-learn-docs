@@ -144,7 +144,7 @@
     spanish: {
       line: 'Spanish words and expressions from A1 to C2, straight from the Cervantes curriculum. <a href="spanish/">Explore &rarr;</a>',
       widget: `
-        <div class="wchip"><span class="dot"></span>CEFR A2</div>
+        <div class="wchip"><span class="dot"></span>CEFR A1</div>
         <div class="whanzi" lang="es">luna</div>
         <div class="whint">Tap for the meaning</div>`,
       floats: [

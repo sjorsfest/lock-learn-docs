@@ -62,7 +62,9 @@ gradients; for Spanish, whose app is not yet cloned, the blueprint's
 identity table). Fonts load from Google Fonts;
 CJK families are served as unicode-range slices so only used glyphs
 download. Arabic headword slots get a taller line box in site.css so
-stacked harakat never clip.
+stacked harakat never clip, and Arabic example sentences carry `dir="rtl"`
+(kept flush left in site.css) so their final period stays at the end of the
+sentence.
 
 Sample words and facts on the pages are real entries from
 `shared/content/*/facts.json`. Keep them real: never invent content for

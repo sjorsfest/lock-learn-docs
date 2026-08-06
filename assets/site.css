@@ -70,6 +70,10 @@
 [data-app="arabic"] .float-card .fh,
 [data-app="arabic"] .wcard .hanzi,
 [data-app="arabic"] .app-card .showpiece .hz { line-height: 1.5; }
+/* Example sentences carry dir="rtl" so the final period lands at the end of
+   the sentence instead of jumping to the other side; keep them flush left so
+   the card's lines still share one edge. */
+[data-app="arabic"] .wcard .example .zh { text-align: left; }
 [data-app="spanish"] {
   --w0: #7A5210; --w1: #3F2A08; --w2: #171003;
   --glow: 240,178,92;
