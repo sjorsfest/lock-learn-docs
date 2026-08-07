@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikTok OAuth callback | Lock&amp;Learn</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0C22">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png" sizes="192x192">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<section class="sec" style="padding-top:150px">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="m tint">Internal tooling</span>
+      <h2 id="headline">Authorization <em>code</em></h2>
+      <p class="lede" id="hint">Paste this into the waiting <span style="font-family:'IBM Plex Mono',monospace">tiktok_auth.py</span> terminal. It expires in minutes, so do it now.</p>
+    </div>
+    <div class="prose">
+      <pre id="code" style="white-space:pre-wrap;word-break:break-all;user-select:all;font-family:'IBM Plex Mono',monospace;padding:18px;border:1px solid rgba(255,255,255,.15);border-radius:12px">…</pre>
+      <p><button id="copy" style="font:inherit;padding:10px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:inherit;cursor:pointer">Copy code</button></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  const codeEl = document.getElementById('code');
+  if (q.get('error')) {
+    document.getElementById('headline').innerHTML = 'Authorization <em>failed</em>';
+    document.getElementById('hint').textContent = 'TikTok returned an error. Close this tab and rerun the CLI.';
+    codeEl.textContent = q.get('error') + (q.get('error_description') ? ': ' + q.get('error_description') : '');
+    document.getElementById('copy').style.display = 'none';
+  } else if (q.get('code')) {
+    codeEl.textContent = q.get('code');
+  } else {
+    document.getElementById('hint').textContent = 'No code in the URL. This page only does something as a TikTok OAuth redirect target.';
+    codeEl.textContent = '—';
+    document.getElementById('copy').style.display = 'none';
+  }
+  document.getElementById('copy').addEventListener('click', async (e) => {
+    await navigator.clipboard.writeText(codeEl.textContent);
+    e.target.textContent = 'Copied';
+  });
+</script>
+</body>
+</html>
