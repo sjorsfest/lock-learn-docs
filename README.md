@@ -32,6 +32,14 @@ assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
+favicon.svg           Site icon (navy lock) at a crawlable URL; Google
+favicon.png           Search ignores data-URI icons, so the root pages link
+apple-touch-icon.png  these instead. favicon.png (192px, transparent) and
+                      apple-touch-icon.png (180px, opaque) are baked from
+                      the SVG with headless Chrome. The app pages keep
+                      their tinted data-URI tab icons and link only the
+                      touch icon; Google takes the search-result favicon
+                      from the index page.
 sitemap.xml           All ten pages with lastmod dates. Bump lastmod for
                       pages you change before publishing.
 robots.txt            Allow-all plus the sitemap URL.
