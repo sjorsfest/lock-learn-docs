@@ -35,11 +35,14 @@ terms.html            Terms of use (plain, self-contained).
 favicon.svg           Site icon (navy lock) at a crawlable URL; Google
 favicon.png           Search ignores data-URI icons, so the root pages link
 apple-touch-icon.png  these instead. favicon.png (192px, transparent) and
-                      apple-touch-icon.png (180px, opaque) are baked from
-                      the SVG with headless Chrome. The app pages keep
-                      their tinted data-URI tab icons and link only the
-                      touch icon; Google takes the search-result favicon
-                      from the index page.
+favicon.ico           apple-touch-icon.png (180px, opaque) are baked from
+                      the SVG with headless Chrome. favicon.ico (16/32/48px,
+                      converted from favicon.png with Pillow) exists only so
+                      crawlers and browsers that request /favicon.ico
+                      unconditionally get a 200 instead of a 404. The app
+                      pages keep their tinted data-URI tab icons and link
+                      only the touch icon; Google takes the search-result
+                      favicon from the index page.
 sitemap.xml           All ten pages with lastmod dates. Bump lastmod for
                       pages you change before publishing.
 robots.txt            Allow-all plus the sitemap URL.
