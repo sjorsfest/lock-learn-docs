@@ -11,13 +11,23 @@ repo root, which mirrors site/ into that repo and pushes one commit.
 ```
 index.html            Family overview. Editorial hero with a world switcher:
                       the numbered tabs (01 Trivia / 02 Chinese / 03 Japanese
-                      / 04 Arabic / 05 Korean / 06 Spanish) crossfade the
-                      wallpaper, glow and the phone's lock-screen widget
-                      between apps; it auto-cycles until the visitor clicks.
+                      / 04 Korean / 05 Spanish) crossfade the wallpaper, glow
+                      and the phone's lock-screen widget between apps; it
+                      auto-cycles until the visitor clicks.
 trivia/index.html     Lock&Learn (trivia) in its indigo/mint world.
 chinese/index.html    Lock&Learn Chinese in its cinnabar world.
 japanese/index.html   Lock&Learn Japanese in its aizome indigo world.
-arabic/index.html     Lock&Learn Arabic in its oasis teal world.
+arabic/index.html     TEMPORARILY DISABLED (2026-08-14, pending extra
+                      research before relaunch): index.html is a noindex
+                      redirect-to-home stub; the real oasis-teal page is
+                      parked as arabic/index.disabled.html. Every Arabic
+                      link, the hero tab/wall layer, the app card, the
+                      site.js ORDER entry and the sitemap entry are
+                      commented out with "Arabic temporarily disabled"
+                      markers. To re-enable: rename the parked file back,
+                      delete the stub, grep the site for that marker and
+                      restore each spot (renumber the Korean/Spanish tabs
+                      back to 05/06).
 korean/index.html     Lock&Learn Korean in its taegeuk cobalt world.
 spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
                       reading line anywhere: Spanish cards have none).
@@ -43,8 +53,9 @@ favicon.ico           apple-touch-icon.png (180px, opaque) are baked from
                       pages keep their tinted data-URI tab icons and link
                       only the touch icon; Google takes the search-result
                       favicon from the index page.
-sitemap.xml           All ten pages with lastmod dates. Bump lastmod for
-                      pages you change before publishing.
+sitemap.xml           Every live page with lastmod dates (the Arabic entry
+                      is commented out while the app is disabled). Bump
+                      lastmod for pages you change before publishing.
 robots.txt            Allow-all plus the sitemap URL.
 CNAME                 The custom domain (locklearn.xyz) for GitHub Pages.
                       It must live here: publish-site mirrors site/ with

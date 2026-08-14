@@ -154,7 +154,8 @@
       ],
     },
   };
-  const ORDER = ['trivia', 'chinese', 'japanese', 'arabic', 'korean', 'spanish'];
+  // 'arabic' temporarily removed from the rotation while the app is unlisted; its WORLDS entry stays for re-enable.
+  const ORDER = ['trivia', 'chinese', 'japanese', 'korean', 'spanish'];
 
   const layers = hero.querySelectorAll('.wall-layer');
   const tabs = hero.querySelectorAll('.w-tab');

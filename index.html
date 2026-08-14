@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lock&amp;Learn: Learning Widgets for Your iPhone Lock Screen</title>
-<meta name="description" content="Trivia questions, Chinese HSK, Japanese JLPT, Korean TOPIK, Arabic CEFR and Spanish CEFR vocabulary on your iPhone Lock Screen. A tiny moment of learning every time your screen wakes. Free on iOS, no accounts, no tracking.">
+<meta name="description" content="Trivia questions, Chinese HSK, Japanese JLPT, Korean TOPIK and Spanish CEFR vocabulary on your iPhone Lock Screen. A tiny moment of learning every time your screen wakes. Free on iOS, no accounts, no tracking.">
 <link rel="canonical" href="https://locklearn.xyz/">
 <meta name="theme-color" content="#0B0C22">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lock&amp;Learn">
 <meta property="og:url" content="https://locklearn.xyz/">
 <meta property="og:title" content="Lock&amp;Learn: Learning Widgets for Your iPhone Lock Screen">
-<meta property="og:description" content="Trivia, Chinese, Japanese, Korean, Arabic and Spanish on your Lock Screen. A tiny moment of learning every time your screen wakes.">
+<meta property="og:description" content="Trivia, Chinese, Japanese, Korean and Spanish on your Lock Screen. A tiny moment of learning every time your screen wakes.">
 <meta property="og:image" content="https://locklearn.xyz/assets/og/home.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Lock&amp;Learn, a family of Lock Screen learning apps: trivia, Chinese, Japanese, Korean, Arabic and Spanish">
+<meta property="og:image:alt" content="Lock&amp;Learn, a family of Lock Screen learning apps: trivia, Chinese, Japanese, Korean and Spanish">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lock&amp;Learn: Learning Widgets for Your iPhone Lock Screen">
-<meta name="twitter:description" content="Trivia, Chinese, Japanese, Korean, Arabic and Spanish on your Lock Screen. A tiny moment of learning every time your screen wakes.">
+<meta name="twitter:description" content="Trivia, Chinese, Japanese, Korean and Spanish on your Lock Screen. A tiny moment of learning every time your screen wakes.">
 <meta name="twitter:image" content="https://locklearn.xyz/assets/og/home.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.png" type="image/png" sizes="192x192">
@@ -38,7 +38,7 @@
       "name": "Lock&Learn",
       "url": "https://locklearn.xyz/",
       "email": "hello@locklearn.xyz",
-      "description": "An independent family of widget-first learning apps for the iPhone Lock Screen: trivia, Chinese HSK vocabulary, Japanese JLPT vocabulary, Korean TOPIK vocabulary, Arabic CEFR vocabulary and Spanish CEFR vocabulary."
+      "description": "An independent family of widget-first learning apps for the iPhone Lock Screen: trivia, Chinese HSK vocabulary, Japanese JLPT vocabulary, Korean TOPIK vocabulary and Spanish CEFR vocabulary."
     },
     {
       "@type": "WebSite",
@@ -56,9 +56,8 @@
         { "@type": "ListItem", "position": 1, "name": "Lock&Learn (Trivia)", "url": "https://locklearn.xyz/trivia/" },
         { "@type": "ListItem", "position": 2, "name": "Lock&Learn Chinese", "url": "https://locklearn.xyz/chinese/" },
         { "@type": "ListItem", "position": 3, "name": "Lock&Learn Japanese", "url": "https://locklearn.xyz/japanese/" },
-        { "@type": "ListItem", "position": 4, "name": "Lock&Learn Arabic", "url": "https://locklearn.xyz/arabic/" },
-        { "@type": "ListItem", "position": 5, "name": "Lock&Learn Korean", "url": "https://locklearn.xyz/korean/" },
-        { "@type": "ListItem", "position": 6, "name": "Lock&Learn Spanish", "url": "https://locklearn.xyz/spanish/" }
+        { "@type": "ListItem", "position": 4, "name": "Lock&Learn Korean", "url": "https://locklearn.xyz/korean/" },
+        { "@type": "ListItem", "position": 5, "name": "Lock&Learn Spanish", "url": "https://locklearn.xyz/spanish/" }
       ]
     }
   ]
@@ -81,7 +80,7 @@
       <a href="trivia/"><span class="e">🧠</span>Trivia</a>
       <a href="chinese/"><span class="e">🇨🇳</span>Chinese</a>
       <a href="japanese/"><span class="e">🇯🇵</span>Japanese</a>
-      <a href="arabic/"><span class="e" lang="ar">ض</span>Arabic</a>
+      <!-- Arabic temporarily disabled: <a href="arabic/"><span class="e" lang="ar">ض</span>Arabic</a> -->
       <a href="korean/"><span class="e">🇰🇷</span>Korean</a>
       <a href="spanish/"><span class="e">🇪🇸</span>Spanish</a>
       <a href="support.html" class="keep">Support</a>
@@ -95,7 +94,7 @@
     <div class="wall-layer on" data-app="trivia"></div>
     <div class="wall-layer" data-app="chinese"></div>
     <div class="wall-layer" data-app="japanese"></div>
-    <div class="wall-layer" data-app="arabic"></div>
+    <!-- Arabic temporarily disabled: <div class="wall-layer" data-app="arabic"></div> -->
     <div class="wall-layer" data-app="korean"></div>
     <div class="wall-layer" data-app="spanish"></div>
   </div>
@@ -118,9 +117,10 @@
         <button class="w-tab on" data-app="trivia"><i>01</i>Trivia</button>
         <button class="w-tab" data-app="chinese"><i>02</i>Chinese</button>
         <button class="w-tab" data-app="japanese"><i>03</i>Japanese</button>
-        <button class="w-tab" data-app="arabic"><i>04</i>Arabic</button>
-        <button class="w-tab" data-app="korean"><i>05</i>Korean</button>
-        <button class="w-tab" data-app="spanish"><i>06</i>Spanish</button>
+        <!-- Arabic temporarily disabled (restore its tab and renumber Korean/Spanish back to 05/06):
+        <button class="w-tab" data-app="arabic"><i>04</i>Arabic</button> -->
+        <button class="w-tab" data-app="korean"><i>04</i>Korean</button>
+        <button class="w-tab" data-app="spanish"><i>05</i>Spanish</button>
       </div>
       <p class="world-line" id="worldLine" data-app="trivia"></p>
 
@@ -240,6 +240,7 @@
         </span>
       </a>
 
+      <!-- Arabic temporarily disabled:
       <a class="app-card reveal d3" data-app="arabic" href="arabic/">
         <span class="tag"><span class="dot"></span>Arabic &middot; CEFR</span>
         <div class="showpiece">
@@ -252,6 +253,7 @@
           <svg width="15" height="15" viewBox="0 0 30 30" fill="none"><path d="M4 15 h20 M17 8 l7 7 -7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
       </a>
+      -->
 
       <a class="app-card reveal d3" data-app="korean" href="korean/">
         <span class="tag"><span class="dot"></span>Korean &middot; TOPIK</span>
@@ -345,7 +347,7 @@
         <a href="trivia/">Lock&amp;Learn</a>
         <a href="chinese/">Lock&amp;Learn Chinese</a>
         <a href="japanese/">Lock&amp;Learn Japanese</a>
-        <a href="arabic/">Lock&amp;Learn Arabic</a>
+        <!-- Arabic temporarily disabled: <a href="arabic/">Lock&amp;Learn Arabic</a> -->
         <a href="korean/">Lock&amp;Learn Korean</a>
         <a href="spanish/">Lock&amp;Learn Spanish</a>
       </div>
