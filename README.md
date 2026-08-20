@@ -38,7 +38,9 @@ assets/site.css       Shared design system. App worlds are themed with
                       render the whole page at 90% via a zoom media query.
 assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
                       hero parallax, the index world switcher, and the
-                      launch-date modal both store buttons open.
+                      modal the store buttons open on pages whose app is
+                      not on the store yet (live app pages link out instead,
+                      and carry no modal markup).
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
@@ -123,16 +125,31 @@ Appending `#all` to any page URL skips the scroll choreography and shows
 every element immediately. Useful for full-page screenshots:
 `npx playwright screenshot --full-page "file://.../site/index.html#all" out.png`.
 
-## Before publishing
+## Store buttons
 
-Each page's two `.store-row`s carry an App Store button. It doesn't link
-anywhere yet: it's a `<button data-open-modal="launch">` element that opens
-the `#launchModal` overlay (markup at the end of `<body>`, behavior in
-`assets/site.js`) announcing the August 15 App Store launch. Once the
-listings are live, swap each `<button>` for an `<a href>` to the real
-listing (`teaser/config.py` still holds `id0000000000` placeholder Apple
-URLs to update at the same time) and delete the modal markup, the trigger
-attributes, and the modal JS block in `site.js`.
+Each page's two `.store-row`s carry an App Store button, in one of two
+states depending on whether that app is live:
+
+- **Live** (trivia, chinese): an `<a class="btn-store" href>` straight to
+  the listing, with a plain `Free on iOS` note. Those pages have no
+  `#launchModal` markup at all.
+- **Not live yet** (japanese, korean, spanish): still a
+  `<button data-open-modal="launch">` opening the `#launchModal` overlay
+  (markup at the end of `<body>`, behavior in `assets/site.js`), with a
+  `launching September 1` note and a per-app line in the modal.
+
+`index.html` is the family page, so both its buttons keep opening the
+modal, which now links the two live apps and names September 1 for the
+other three.
+
+When a listing goes live, swap that page's two `<button>`s for `<a href>`s,
+drop the date from the store note, delete the page's modal markup, and
+update the same app's `app_store_url` in `teaser/config.py` (the ones that
+are still `id0000000000` are the apps that have not shipped). When the last
+app is out, the modal JS block in `site.js` and the `.modal-*` CSS can go
+with it. Site links use the country-less
+`https://apps.apple.com/app/<slug>/id<id>` form so Apple routes each
+visitor to their own storefront.
 
 The site is iOS-only on purpose for now: the Android builds aren't ready,
 so Google Play buttons and "iOS & Android" copy were removed until they

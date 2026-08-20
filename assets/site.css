@@ -301,6 +301,12 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
   line-height: 1.35; margin-top: 14px;
 }
 .modal-card p { font-size: 14.5px; line-height: 1.65; color: var(--ink-2); margin-top: 12px; }
+.modal-card p a {
+  color: var(--ink); text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.35);
+  transition: text-decoration-color .2s;
+}
+.modal-card p a:hover { text-decoration-color: currentColor; }
 .modal-close {
   position: absolute; top: 18px; right: 18px;
   width: 30px; height: 30px; border-radius: 50%;
