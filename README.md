@@ -130,17 +130,17 @@ every element immediately. Useful for full-page screenshots:
 Each page's two `.store-row`s carry an App Store button, in one of two
 states depending on whether that app is live:
 
-- **Live** (trivia, chinese): an `<a class="btn-store" href>` straight to
-  the listing, with a plain `Free on iOS` note. Those pages have no
-  `#launchModal` markup at all.
-- **Not live yet** (japanese, korean, spanish): still a
+- **Live** (trivia, chinese, japanese): an `<a class="btn-store" href>`
+  straight to the listing, with a plain `Free on iOS` note. Those pages
+  have no `#launchModal` markup at all.
+- **Not live yet** (korean, spanish): still a
   `<button data-open-modal="launch">` opening the `#launchModal` overlay
   (markup at the end of `<body>`, behavior in `assets/site.js`), with a
-  `launching September 1` note and a per-app line in the modal.
+  `launching August 30` note and a per-app line in the modal.
 
 `index.html` is the family page, so both its buttons keep opening the
-modal, which now links the two live apps and names September 1 for the
-other three.
+modal, which now links the three live apps and names August 30 for the
+other two.
 
 When a listing goes live, swap that page's two `<button>`s for `<a href>`s,
 drop the date from the store note, delete the page's modal markup, and
