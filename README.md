@@ -116,8 +116,11 @@ The vocabulary list, hub and practice-quiz pages are rendered from
 from the repo root; `make check-site-pages` fails if the committed output is
 stale, and `make publish-site` runs that check first). Config and copy live
 in `sitegen/flavors.py`; the how and why, including the publication policy
-(full word lists everywhere, example sentences only for the free pack plus a
-25-row sample on paid levels, no trivia facts), are in `sitegen/README.md`.
+(the free level of each flavor in full with sentences; paid levels as a
+50-word preview with a blurred teaser and app CTA, plus 25 sample sentences;
+no trivia facts), are in `sitegen/README.md`. Every footer, hand-written and
+generated, carries "Word lists" and "Practice tests" columns linking the
+three hubs and the three free-level tests.
 After any content export: `make site-pages`, commit the regenerated pages,
 `sitegen/manifest.json` and `sitemap.xml` together.
 
