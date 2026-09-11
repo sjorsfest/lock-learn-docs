@@ -301,22 +301,34 @@
 .list-head h1.display { font-size: clamp(38px, 4.3vw, 62px); margin-top: 18px; }
 
 /* ------------------------------------------------------------------ preview gate (paid levels)
-   Under the 50 shown words: a few real rows, blurred and inert, with the
-   app CTA card floating over them. Mirrors .wcard .blur-wrap in site.css. */
-.gate-wrap { position: relative; margin-top: 0; min-height: 380px; }
-.teaser { filter: blur(6px); opacity: .6; user-select: none; pointer-events: none; }
+   Under the 50 shown words the table appears to continue: eight real rows
+   laid out on the same columns, each one blurrier and fainter than the
+   last, inert, with the app CTA card sitting inside that blurred stretch.
+   Rows are divs (a filter on <tr> is unreliable across browsers) but they
+   copy the table's widths, paddings, type and hairlines exactly. */
+.gate-wrap { position: relative; }
+.teaser { user-select: none; pointer-events: none; }
 .teaser .trow {
-  display: grid; grid-template-columns: 30% 26% 1fr; gap: 0 16px;
-  padding: 14px 16px 14px 0; border-bottom: 1px solid var(--hair-2);
+  display: grid; grid-template-columns: 30% 26% 1fr;
+  padding: 14px 0; border-bottom: 1px solid var(--hair-2);
   font-size: 14.5px; line-height: 1.55;
 }
-.teaser .trow .w { font-family: var(--hanzi); font-size: 22px; font-weight: 600; line-height: 1.3; }
+.teaser .trow > span { padding-right: 16px; }
+.teaser .trow .w { font-family: var(--hanzi); font-size: 22px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 .teaser .trow .r { color: var(--ink-2); font-weight: 500; }
-.teaser .trow .g { font-family: var(--serif); font-size: 16px; }
+.teaser .trow .g { font-family: var(--serif); font-size: 16px; color: var(--ink); }
+.teaser .trow:nth-child(1) { filter: blur(.6px); opacity: .92; }
+.teaser .trow:nth-child(2) { filter: blur(1.4px); opacity: .84; }
+.teaser .trow:nth-child(3) { filter: blur(2.4px); opacity: .74; }
+.teaser .trow:nth-child(4) { filter: blur(3.6px); opacity: .62; }
+.teaser .trow:nth-child(5) { filter: blur(5px); opacity: .5; }
+.teaser .trow:nth-child(6) { filter: blur(6.5px); opacity: .4; }
+.teaser .trow:nth-child(7) { filter: blur(8px); opacity: .3; }
+.teaser .trow:nth-child(8) { filter: blur(9.5px); opacity: .2; border-bottom-color: transparent; }
 .gate {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  padding: 24px 0 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, color-mix(in srgb, var(--w2) 70%, transparent) 45%, var(--w2) 100%);
+  padding-top: 12%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 30%, color-mix(in srgb, var(--w2) 60%, transparent) 70%, var(--w2) 100%);
 }
 .gate-card {
   max-width: 520px; width: 100%; text-align: center;
@@ -331,8 +343,12 @@
 .gate-card p { font-size: 14px; line-height: 1.65; color: var(--ink-2); margin-top: 10px; }
 .gate-card .store-row { margin-top: 20px; justify-content: center; }
 @media (max-width: 700px) {
-  .teaser .trow { grid-template-columns: 1fr auto; }
+  .teaser .trow { grid-template-columns: 1fr auto; gap: 2px 14px; }
+  .teaser .trow > span { padding-right: 0; }
+  .teaser .trow .w { grid-column: 1; }
+  .teaser .trow .r { grid-column: 2; grid-row: 1; align-self: center; text-align: right; }
   .teaser .trow .g { grid-column: 1 / -1; }
+  .gate { align-items: flex-end; padding: 0 0 6px; }
   .gate-card { padding: 22px 20px 24px; }
 }
 @media print { .gate-wrap { display: none !important; } }
