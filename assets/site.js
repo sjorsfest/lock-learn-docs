@@ -1,7 +1,8 @@
 /* Lock&Learn site behaviors. Kept deliberately small:
    header state, masked line reveals, reveal-on-scroll, a light hero
-   parallax, and (family page only) the world switcher that crossfades
-   the hero between the six app worlds. */
+   parallax, the stage light that aims the hero's lamp at the phone, and
+   (family page only) the world switcher that crossfades the hero between
+   the app worlds. */
 
 (function () {
   // ---- header ----------------------------------------------------------
@@ -44,6 +45,94 @@
       });
     }, { passive: true });
   }
+
+  // ---- stage light: aim the lamp at the phone ---------------------------
+  // The hero wall is the teasers' pool rig (site.css, "hero"). Its cone,
+  // key light and floor pool are positioned by --spot-* on the hero, which
+  // is measured from the phone's layout offsets (so the parallax transform
+  // and the laptop zoom never skew it) and re-measured whenever the layout
+  // can move. The dust in the beam is scattered here too: a handful of
+  // white motes, seeded so every load places them the same way.
+  const rnd = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+  document.querySelectorAll('.hero').forEach((hero) => {
+    const phone = hero.querySelector('.phone');
+    const bg = hero.querySelector('.hero-bg');
+    if (!bg) return;
+    const offset = (el) => {
+      let x = 0, y = 0;
+      for (let n = el; n && n !== hero; n = n.offsetParent) { x += n.offsetLeft; y += n.offsetTop; }
+      return { x, y };
+    };
+    const aim = () => {
+      const o = offset(phone);
+      hero.style.setProperty('--spot-x', `${Math.round(o.x + phone.offsetWidth / 2)}px`);
+      hero.style.setProperty('--spot-key', `${Math.round(o.y + phone.offsetHeight * 0.36)}px`);
+      hero.style.setProperty('--spot-floor', `${Math.round(o.y + phone.offsetHeight + 26)}px`);
+    };
+    if (phone) {
+      aim();
+      addEventListener('resize', aim);
+      addEventListener('load', aim);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(aim);
+    }
+
+    const motes = document.createElement('div');
+    motes.className = 'motes';
+    for (let i = 0; i < 14; i++) {
+      const m = document.createElement('i');
+      m.className = 'mote';
+      const y = 0.12 + rnd(i * 3.1) * 0.8;          // fraction down the hero
+      const spread = 40 + y * 240;                   // the cone widens toward the floor
+      m.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
+      m.style.setProperty('--mx', `${((rnd(i * 7.7) - 0.5) * 2 * spread).toFixed(0)}px`);
+      m.style.setProperty('--mdx', `${((rnd(i * 5.3) - 0.5) * 40).toFixed(0)}px`);
+      m.style.setProperty('--ms', `${(1.5 + rnd(i * 11.9) * 1.8).toFixed(1)}px`);
+      m.style.setProperty('--mo', (0.18 + rnd(i * 2.3) * 0.34).toFixed(2));
+      m.style.setProperty('--md', `${(14 + rnd(i * 9.3) * 12).toFixed(1)}s`);
+      m.style.setProperty('--mdl', `${(-rnd(i * 13.7) * 26).toFixed(1)}s`);
+      motes.appendChild(m);
+    }
+    bg.appendChild(motes);
+  });
+
+  // ---- the night sky: stars that gather as you scroll -------------------
+  // Every section after the hero gets a starfield, sized by its area and
+  // by how far down the page it sits, so the sky fills in section by
+  // section; the closing CTA gets the densest one. Placement is seeded per
+  // section, so a reload shows the same sky. A field stays dark until its
+  // section scrolls into view, then the stars fade up one by one.
+  const skies = [...document.querySelectorAll('.sec, .cta')];
+  const skyIO = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('sky-on'); skyIO.unobserve(e.target); }
+    }),
+    { threshold: 0.12 }
+  );
+  skies.forEach((sec, i) => {
+    const area = sec.offsetWidth * sec.offsetHeight;
+    const isCta = sec.classList.contains('cta');
+    const density = isCta ? 2 * (0.4 + 0.45 * (skies.length - 1)) : 0.4 + 0.45 * i; // per 100k px²
+    const count = Math.max(4, Math.min(220, Math.round((area / 1e5) * density)));
+    const seed = 7 + i * 13;
+    const field = document.createElement('div');
+    field.className = 'stars';
+    for (let j = 0; j < count; j++) {
+      const st = document.createElement('i');
+      st.className = 'star';
+      st.style.setProperty('--sx', `${(rnd(j * 11.9 + seed) * 100).toFixed(2)}%`);
+      st.style.setProperty('--sy', `${(rnd(j * 3.1 + seed) * 100).toFixed(2)}%`);
+      st.style.setProperty('--ss', `${(1 + rnd(j * 5.3 + seed) * 2).toFixed(1)}px`);
+      st.style.setProperty('--so', (0.22 + rnd(j * 7.7 + seed) * 0.6).toFixed(2));
+      st.style.setProperty('--sd', `${Math.round(rnd(j * 2.3 + seed) * 1400)}ms`);
+      if (rnd(j * 9.1 + seed) < 0.3) {
+        st.classList.add('tw');
+        st.style.setProperty('--st', `${(3 + rnd(j * 4.7 + seed) * 5).toFixed(1)}s`);
+      }
+      field.appendChild(st);
+    }
+    sec.appendChild(field);
+    if (location.hash === '#all') sec.classList.add('sky-on'); else skyIO.observe(sec);
+  });
 
   // ---- launch-announcement modal (App Store button) ---------------------
   const launchModal = document.getElementById('launchModal');
@@ -163,13 +252,14 @@
   const lockword = document.getElementById('worldWidget');
   const floatWrap = document.getElementById('worldFloats');
   const phoneScreen = document.getElementById('worldScreen');
+  const phoneStage = hero.querySelector('.phone-stage');
   let current = 'trivia';
 
   function paint(key) {
     const w = WORLDS[key];
     layers.forEach((l) => l.classList.toggle('on', l.dataset.app === key));
     tabs.forEach((t) => t.classList.toggle('on', t.dataset.app === key));
-    [phoneScreen, lockword, floatWrap, line].forEach((el) => (el.dataset.app = key));
+    [phoneScreen, phoneStage, lockword, floatWrap, line].forEach((el) => (el.dataset.app = key));
     lockword.innerHTML = w.widget;
     floatWrap.innerHTML = w.floats
       .map((f) => `<div class="float-card ${f.cls}">${f.html}</div>`)

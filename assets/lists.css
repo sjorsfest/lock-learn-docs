@@ -131,7 +131,7 @@
 .vocab.cards tbody tr {
   display: grid; grid-template-columns: 1fr auto; gap: 4px 16px;
   padding: 18px 22px; border-radius: 18px;
-  background: var(--panel); border: 1px solid var(--hair-2);
+  background: linear-gradient(180deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.04) 50%, rgba(255,255,255,.028) 100%), var(--w2); border: 1px solid rgba(255,255,255,.12); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.14);
   cursor: pointer; contain-intrinsic-size: auto 96px;
   transition: border-color .25s, background .25s;
 }
@@ -156,7 +156,7 @@
 .samples { margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .sample {
   border-radius: 18px; padding: 20px 22px;
-  background: var(--panel); border: 1px solid var(--hair-2);
+  background: linear-gradient(180deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.04) 50%, rgba(255,255,255,.028) 100%), var(--w2); border: 1px solid rgba(255,255,255,.12); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.14);
 }
 .sample .w { font-family: var(--hanzi); font-size: 24px; font-weight: 600; line-height: 1.25; }
 .sample .r { font-size: 13.5px; font-weight: 500; color: var(--ink-2); margin-top: 3px; }
@@ -213,36 +213,100 @@
 .q-card {
   position: relative; border-radius: 24px; padding: 28px 30px 30px;
   background:
-    radial-gradient(120% 90% at 50% 0%, rgba(var(--glow),.14), rgba(var(--glow),0) 70%),
-    linear-gradient(180deg, color-mix(in srgb, var(--w1) 80%, var(--w0) 8%), var(--w2));
-  border: 1px solid rgba(255,255,255,.11);
-  box-shadow: 0 30px 70px rgba(0,0,0,.38);
+    radial-gradient(120% 90% at 50% 0%, rgba(var(--glow),.16), rgba(var(--glow),0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.045) 45%, rgba(255,255,255,.03) 100%), var(--w2);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.18), inset 0 -1px 0 rgba(0,0,0,.25), 0 30px 70px rgba(0,0,0,.38);
 }
-.q-progress { display: flex; justify-content: space-between; gap: 16px; }
-.q-word { font-family: var(--hanzi); font-size: clamp(34px, 5vw, 48px); font-weight: 600; line-height: 1.15; margin-top: 20px; text-shadow: 0 8px 50px rgba(var(--glow),.3); }
+.q-progress { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.q-progress #qpos { flex: 1; }
+.q-streak { color: var(--tint); }
+.q-streak::after { content: "\00b7"; margin: 0 6px 0 14px; color: var(--ink-3); }
+.q-streak.pop { animation: qpop .5s var(--ease); }
+#qscore.pop { animation: qpop .5s var(--ease); color: var(--tint); }
+@keyframes qpop { 0% { transform: scale(1); } 35% { transform: scale(1.22); } 100% { transform: scale(1); } }
+/* the thin progress bar under the head: one fill per question */
+.q-bar { height: 2px; margin-top: 14px; border-radius: 2px; background: rgba(255,255,255,.08); overflow: hidden; }
+.q-bar i { display: block; height: 100%; width: 0; background: var(--tint); border-radius: 2px; transition: width .5s var(--ease); }
+/* rounds slide out and in; the options cascade A, B, C */
+.q-round { transition: opacity .18s ease, transform .18s ease; }
+.q-round.out { opacity: 0; transform: translateX(-14px); }
+.q-word { font-family: var(--hanzi); font-size: clamp(34px, 5vw, 48px); font-weight: 600; line-height: 1.15; margin-top: 22px; text-shadow: 0 8px 50px rgba(var(--glow),.3); }
 .q-reading { font-size: 15px; font-weight: 500; color: var(--ink-2); margin-top: 6px; min-height: 1.6em; }
-.q-opts { display: grid; gap: 10px; margin-top: 24px; }
+.q-line { margin-top: 14px; font-size: 15px; font-weight: 600; color: var(--ink-3); min-height: 1.5em; transition: color .25s; }
+.q-line.hit { color: var(--tint); }
+.q-line.miss { color: var(--ink-2); }
+.q-opts { display: grid; gap: 10px; margin-top: 14px; }
 .q-opt {
-  text-align: left; padding: 14px 20px; border-radius: 14px;
-  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.13);
-  font-family: var(--serif); font-size: 17px; line-height: 1.4; color: var(--ink);
-  transition: border-color .25s, background .25s, transform .25s var(--ease);
+  position: relative; display: flex; align-items: center; gap: 12px;
+  text-align: left; padding: 8px 18px 8px 8px; border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
+  font-family: var(--serif); font-size: 17px; line-height: 1.35; color: var(--ink);
+  transition: border-color .25s, background .25s, transform .25s var(--ease), opacity .25s;
+  animation: qland .35s var(--ease) both;
+  animation-delay: calc(var(--i) * 70ms);
 }
+@keyframes qland { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.q-opt i {
+  width: 34px; height: 34px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
+  font-family: var(--sans); font-style: normal; font-size: 13px; font-weight: 700; color: var(--ink-3);
+}
+.q-opt span { flex: 1; min-width: 0; }
+.q-opt .qck { flex: none; opacity: 0; transform: scale(.6); transition: opacity .25s, transform .25s var(--ease); }
 .q-opt:hover:not(:disabled) { border-color: color-mix(in srgb, var(--tint) 50%, transparent); transform: translateY(-1px); }
 .q-opt:disabled { cursor: default; }
-.q-opt.right { border-color: var(--tint); background: color-mix(in srgb, var(--tint) 14%, transparent); }
-.q-opt.wrong { border-color: rgba(255,120,120,.6); background: rgba(255,120,120,.1); }
-.q-opt.dim { opacity: .5; }
-.q-foot { margin-top: 20px; min-height: 40px; }
-.q-end { border-radius: 24px; padding: 30px 32px; background: var(--panel); border: 1px solid var(--hair-2); }
-.q-end h3 { font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); font-weight: 600; letter-spacing: -.3px; margin-top: 10px; }
-.q-end .lede { margin-top: 12px; font-size: 15.5px; line-height: 1.7; color: var(--ink-2); max-width: 540px; }
+.q-opt.right { border-color: #5E8C6E; background: rgba(94,140,110,.18); color: #A9D9B8; transform: scale(1.02); }
+.q-opt.right i { color: #A9D9B8; background: rgba(94,140,110,.25); }
+.q-opt.right .qck { opacity: 1; transform: none; color: #A9D9B8; }
+.q-opt.right.big { transform: scale(1.05); }
+/* the jackpot's light sweep: one soft band crossing the winning capsule */
+.q-opt.big::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.35), rgba(255,255,255,0));
+  background-size: 45% 100%; background-repeat: no-repeat; background-position: -60% 0;
+  animation: qglint .7s ease-in-out .15s forwards;
+}
+@keyframes qglint { to { background-position: 160% 0; } }
+.q-opt.wrong { border-color: rgba(255,120,120,.6); background: rgba(255,120,120,.12); animation: qshake .35s linear; }
+.q-opt.wrong i { color: rgba(255,150,150,.9); }
+@keyframes qshake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+.q-opt.dim { opacity: .35; }
+/* the burst: a few sparks leaving the winning capsule */
+.q-opt > .q-spark, .q-spark {
+  position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; border-radius: 50%; pointer-events: none;
+  display: block; box-shadow: none; background: var(--tint); opacity: 0;
+  animation: qspark .8s cubic-bezier(.2, .7, .3, 1) forwards; animation-delay: var(--d);
+}
+.q-opt > .q-spark.gold, .q-spark.gold { background: #F5D67A; }
+@keyframes qspark {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(.2); }
+}
+.q-keys { margin-top: 18px; color: var(--ink-3); }
+@media (hover: none) { .q-keys { display: none; } }
+/* the end card */
+.q-end { border-radius: 24px; padding: 30px 32px; background: linear-gradient(180deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.04) 50%, rgba(255,255,255,.028) 100%), var(--w2); border: 1px solid rgba(255,255,255,.12); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.14); position: relative; overflow: hidden; }
+.q-end-head { display: flex; align-items: center; gap: 24px; }
+.q-ring { position: relative; width: 96px; height: 96px; flex: none; }
+.q-ring svg { width: 100%; height: 100%; }
+.q-ring #qringfill { transition: stroke-dashoffset 1.1s var(--ease); }
+.q-ring span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: -.3px; }
+.q-end h3 { font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); font-weight: 600; letter-spacing: -.3px; margin-top: 8px; }
+.q-end #qbest { margin-top: 8px; }
+.q-end .lede { margin-top: 16px; font-size: 15.5px; line-height: 1.7; color: var(--ink-2); max-width: 540px; }
 .q-end .store-row { margin-top: 24px; }
 .q-end #qagain { margin-top: 22px; }
+@media (prefers-reduced-motion: reduce) {
+  .q-opt, .q-opt.wrong, .q-opt.big::after, .q-spark, .q-streak.pop, #qscore.pop { animation: none; }
+  .q-round { transition: none; }
+}
 
 /* static sample questions */
 .qsample ol { margin-top: 44px; list-style: none; padding: 0; display: grid; gap: 12px; }
-.qsample li { border-radius: 18px; padding: 18px 22px; background: var(--panel); border: 1px solid var(--hair-2); }
+.qsample li { border-radius: 18px; padding: 18px 22px; background: linear-gradient(180deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.04) 50%, rgba(255,255,255,.028) 100%), var(--w2); border: 1px solid rgba(255,255,255,.12); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.14); }
 .qsample li .w { font-family: var(--hanzi); font-size: 24px; font-weight: 600; line-height: 1.25; }
 .qsample li .r { font-size: 13.5px; color: var(--ink-2); margin-top: 3px; }
 .qsample li .opts { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -277,7 +341,38 @@
 .list-hero .kicker { display: block; margin-top: 30px; }
 .list-hero h1.display { font-size: clamp(38px, 4.3vw, 62px); margin-top: 18px; }
 .list-hero .hero-sub { max-width: 470px; }
+/* the practice pages' three scannable facts, above the test card */
+.facts { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 9px; max-width: 540px; }
+.facts li { position: relative; padding-left: 24px; font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+.facts li::before {
+  content: ""; position: absolute; left: 0; top: .5em; width: 11px; height: 11px; border-radius: 50%;
+  background: color-mix(in srgb, var(--tint) 22%, transparent); box-shadow: inset 0 0 0 1.5px var(--tint);
+}
+.facts b { color: var(--ink); font-weight: 600; }
+.facts + .lede.hint { margin-top: 18px; }
 .list-hero .store-row { margin-top: 32px; }
+/* the practice pages stack "Test yourself below" under the store button at
+   the same width: a tinted glass pill, so it reads as a button and not as
+   a note, with the store note aligned to the top button */
+.store-row.stacked { align-items: flex-start; }
+.store-row.stacked .store-note { margin-top: 20px; }
+.store-stack { display: grid; gap: 12px; }
+.store-stack .btn-store { justify-content: center; }
+.btn-store.test {
+  gap: 10px;
+  background: color-mix(in srgb, var(--tint) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tint) 55%, transparent);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 12px 30px rgba(0,0,0,.3);
+}
+.btn-store.test:hover {
+  background: color-mix(in srgb, var(--tint) 26%, transparent);
+  border-color: color-mix(in srgb, var(--tint) 80%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 18px 40px rgba(0,0,0,.4);
+}
+.btn-store.test svg { transition: transform .3s var(--ease); }
+.btn-store.test:hover svg { transform: translateY(3px); }
+#test { scroll-margin-top: 24px; }
 .list-hero .phone-stage { transform-origin: top center; }
 .list-hero .lockword .whanzi { overflow-wrap: anywhere; }
 @media (min-width: 981px) {
@@ -295,6 +390,75 @@
   .list-hero .phone-stage { zoom: .68; }
   .list-hero .f2 { display: none; }
 }
+
+/* ------------------------------------------------------------------ quiz phone
+   The practice pages' hero phone shows the app's quick-quiz page instead
+   of the Lock Screen: the light app surface with the flavor's own chrome
+   colour (--acc, set inline from flavors.py app_accent; not the site
+   tint), a round just resolved with the correct meaning lit in the app's
+   "known" green. Same anatomy as ios/Core/QuizCard.swift and the store
+   shots: bolt kicker and countdown ring, headword, reading, streak line,
+   three lettered capsules, floating tab bar. */
+.quiz-phone { color: var(--qink); text-align: left; }
+.quiz-phone .screen {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--acc) 9%, transparent) 0%, rgba(255,255,255,0) 30%),
+    linear-gradient(180deg, #FBF8F4 0%, #F2EAE1 100%);
+}
+.quiz-phone .island { box-shadow: none; }
+.qbar {
+  position: absolute; top: 16px; left: 30px; right: 26px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12.5px; font-weight: 600; letter-spacing: -.1px;
+}
+.qsig { display: inline-flex; align-items: center; gap: 4px; }
+.qapp {
+  position: absolute; top: 62px; bottom: 100px; left: 24px; right: 24px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.qhead { display: flex; align-items: flex-start; justify-content: space-between; color: var(--acc); margin-bottom: 14px; }
+.qkick { display: inline-flex; align-items: center; gap: 4px; font-size: 9.5px; font-weight: 800; letter-spacing: .14em; margin-top: 4px; }
+.qring { flex: none; }
+.qhw { font-family: var(--hanzi); font-size: 34px; font-weight: 600; line-height: 1.15; overflow-wrap: anywhere; }
+.qrd { font-size: 13px; margin-top: 5px; color: color-mix(in srgb, var(--qink) 55%, transparent); }
+.qline { font-size: 12.5px; font-weight: 600; color: var(--acc); margin-top: 14px; }
+.qopts { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+.qo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 12px 6px 6px; border-radius: 999px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 4px 14px rgba(60,40,25,.08);
+  font-size: 13px; font-weight: 600; opacity: .38;
+}
+.qo i {
+  width: 28px; height: 28px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.95); box-shadow: 0 2px 8px rgba(60,40,25,.10);
+  font-style: normal; font-size: 12px; font-weight: 700;
+  color: color-mix(in srgb, var(--qink) 50%, transparent);
+}
+.qo span { flex: 1; min-width: 0; }
+.qo.hit { opacity: 1; background: rgba(231,239,233,.95); color: #5E8C6E; }
+.qo.hit i { color: #5E8C6E; }
+.qo .qck { flex: none; color: #5E8C6E; }
+.qtabs {
+  position: absolute; left: 16px; right: 16px; bottom: 24px;
+  display: flex; justify-content: space-around; align-items: center;
+  padding: 5px; border-radius: 999px;
+  background: rgba(255,255,255,.66);
+  box-shadow: 0 6px 20px rgba(60,40,25,.08), inset 0 1px 0 rgba(255,255,255,.8);
+}
+.qtabs span {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
+  font-size: 8.5px; font-weight: 600; padding: 5px 13px; border-radius: 999px;
+  color: color-mix(in srgb, var(--qink) 70%, transparent);
+}
+.qtabs span.on { color: var(--acc); background: color-mix(in srgb, var(--acc) 10%, transparent); }
+.qtabs svg { width: 17px; height: 17px; }
+.quiz-phone .home-bar { background: rgba(0,0,0,.5); }
+/* the floating cards keep clear of the lit answer and the tab bar */
+.quiz-hero .f2 { top: 66%; right: -6%; }
+.quiz-hero .f3 { left: -8%; bottom: 6%; }
 .sec-head .lede + .lede { margin-top: 12px; }
 .sec-head .lede a { color: var(--tint); }
 .sec-head .lede.hint { color: var(--ink-3); font-size: 14px; }
@@ -335,8 +499,8 @@
   padding: 30px 32px 32px; border-radius: 24px;
   background:
     radial-gradient(120% 90% at 50% 0%, rgba(var(--glow),.16), rgba(var(--glow),0) 70%),
-    linear-gradient(180deg, color-mix(in srgb, var(--w1) 80%, var(--w0) 8%), var(--w2));
-  border: 1px solid rgba(255,255,255,.12);
+    linear-gradient(180deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.045) 45%, rgba(255,255,255,.03) 100%), var(--w2);
+  border: 1px solid rgba(255,255,255,.14);
   box-shadow: 0 30px 70px rgba(0,0,0,.45);
 }
 .gate-card h3 { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 28px); font-weight: 600; letter-spacing: -.3px; line-height: 1.2; margin-top: 12px; text-wrap: balance; }

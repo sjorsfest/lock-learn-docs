@@ -41,18 +41,25 @@ spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
                       word-list license is cleared (sitegen/README.md).
                       Never hand-edit these.
 assets/lists.css      Styles for the generated pages only (table,
-assets/lists.js       flashcard mode, sample panels, quiz, sticky store
-                      bar) and their behaviors. Product pages load neither.
+assets/lists.js       flashcard mode, sample panels, the practice quiz
+                      played with the app's beats and celebrations, the
+                      sticky store bar, and the practice pages' hero phone
+                      showing the app's quiz screen) and their behaviors.
+                      Product pages load neither.
 assets/site.css       Shared design system. App worlds are themed with
                       [data-app="trivia|chinese|japanese|arabic|korean|spanish"],
                       which sets the wall gradient, glow, accent tint and
-                      headword font. Laptop-width viewports (981 to 1760px)
-                      render the whole page at 90% via a zoom media query.
+                      headword font. The hero is a stage lit by one lamp
+                      (see "The hero stage" below). Laptop-width viewports
+                      (981 to 1760px) render the whole page at 90% via a
+                      zoom media query.
 assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
-                      hero parallax, the index world switcher, and the
-                      modal the store buttons open on pages whose app is
-                      not on the store yet (live app pages link out instead,
-                      and carry no modal markup).
+                      hero parallax, the stage light that aims the hero's
+                      lamp at the phone and scatters the dust in its beam,
+                      the index world switcher, and the modal the store
+                      buttons open on pages whose app is not on the store
+                      yet (live app pages link out instead, and carry no
+                      modal markup).
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
 terms.html            Terms of use (plain, self-contained).
@@ -88,8 +95,28 @@ assets/og/            og:image cards (1200x630 PNG per page) plus their
 ## Design language
 
 Editorial and type-led: numbered sections with hairline rules, content set
-directly on the canvas (no card chrome), a film-grain overlay for
-atmosphere. Three voices, mirroring the apps and teasers: content speaks
+directly on the canvas, a film-grain overlay for atmosphere. Since
+2026-09-11 the whole page is one stage (see "The hero stage" below): the
+old tinted bands with hairline walls are gone, every section is a stretch
+of the same floor lit from above by its own soft pool of the app's glow
+(`.sec::before`, a little brighter on `.sec.band`), each section head
+carries a hairline rule with a tinted tick, every card (`.wcard`, `.tile`,
+`.plus-panel`, `.price`, `.pack`, the quiz and gate cards in lists.css)
+wears the same glass as the hero's floating widgets (translucent pane, rim
+light on the top edge, seated shadow; never a filled box), the night sky
+fills in as you scroll (see below), the closing `.cta` is where it peaks,
+over the teasers' `grid` rig (lit horizon, neon floor scrolling in
+perspective), and the footer darkens into the far wall.
+
+The night sky: `site.js` drops a starfield (`.stars` of `.star`) into every
+`.sec` and the `.cta`, sized by the section's area and by how far down the
+page it sits, so each section carries more stars than the one before and
+the CTA carries the most. Placement is seeded per section, so a reload
+shows the same sky. A field stays dark until its section scrolls into view
+(`.sky-on`), then the stars fade up on individual delays and about a third
+keep twinkling; `#all` lights every field at once, and reduced motion
+shows them without the fade or the twinkle. The hero has no stars: it is
+the lamp's room, and the sky opens once you leave it. Three voices, mirroring the apps and teasers: content speaks
 serif (Source Serif 4; Noto Serif SC/JP/KR for CJK headwords, Noto Naskh
 Arabic for Arabic ones), the interface whispers sans (Inter), meta labels
 are mono (IBM Plex Mono). Wall gradients, glows and accents come from
@@ -108,6 +135,30 @@ sentence.
 Sample words and facts on the pages are real entries from
 `shared/content/*/facts.json`. Keep them real: never invent content for
 mockups.
+
+## The hero stage
+
+Since 2026-09-11 every hero is lit like the teasers' `pool` rig
+(`teaser/video/src/components/rigs.tsx`, PoolRig; the six rigs are described
+in `teaser/README.md` under "The room"). The walls fall to near black, one
+lamp above the phone drops a soft cone of haze onto it, the phone gets a key
+light and throws a pool of the app's own glow on the floor beneath it, and a
+few white dust motes rise through the beam. It is pure CSS in `site.css`
+(the `hero` block: conic gradient for the cone, radial gradients for the
+pool and key light, `color-mix` for the dimmed walls, a slow `breathe`
+sway), so it takes each world's colour from the same `--glow` and `--w*`
+variables as everything else and the index's world switcher crossfades the
+whole rig. `site.js` measures the phone's layout position and sets
+`--spot-x`, `--spot-key` and `--spot-floor` on the hero so the light lands
+on the phone at every breakpoint; the percentages in the CSS are the no-JS
+fallback. The motes are hidden under 980px (the beam runs behind the copy
+there) and, with the sway, under `prefers-reduced-motion`. The spotlight
+was chosen for the hero because it makes the phone the lit object; the
+`grid` rig (retrowave floor to a lit horizon) was judged too loud for the
+opening and lives on the closing `.cta` instead, where the horizon line
+sits under the store button, the page-wide night sky (see "Design
+language") reaches its densest above it, and the floor scroll is the only
+motion.
 
 ## Generated pages
 

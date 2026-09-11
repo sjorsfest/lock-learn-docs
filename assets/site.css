@@ -1,12 +1,15 @@
 /* ------------------------------------------------------------------
    Lock&Learn marketing site.
-   One design system, three app worlds. The canvas is each app's dark
-   "lockwall" (mirrors teaser/config.py and the store shots.html files;
+   One design system, five app worlds. The canvas is each app's dark
+   "lockwall" (mirrors teaser/config.py and the store shots.html files),
+   and the hero lights it like the teasers' pool rig: one lamp, near-black
+   walls, the phone in the light (see the hero section below;
    note: never write a glob with star-slash in these comments, it
    terminates the comment block and corrupts the next rule). Three
    voices: content speaks serif, the interface whispers sans, meta is
-   mono. Sections are distinct rooms: numbered heads, tinted bands, and
-   product cards that show the widget rather than describe it. Worlds
+   mono. The page is one stage: every section is a stretch of the same
+   floor under its own pool of light, with numbered hairline heads and
+   glass cards that show the widget rather than describe it. Worlds
    are themed with [data-app] so a page, a section or a card can each
    carry its own app identity.
    ------------------------------------------------------------------ */
@@ -167,8 +170,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .prose a { color: var(--tint); }
 .prose a:hover { text-decoration: underline; }
 
-/* ------------------------------------------------------------------ hero */
+/* ------------------------------------------------------------------ hero
+   The hero is a stage lit by one lamp: the teasers' "pool" rig
+   (teaser/video/src/components/rigs.tsx, PoolRig) ported to CSS. The walls
+   fall to near black, a cone of haze drops from a lamp above the phone,
+   throws a pool of the app's own light on the floor beneath it and a key
+   light on the phone itself. site.js measures the phone and sets --spot-x,
+   --spot-key and --spot-floor on the hero so the light lands on the
+   subject at every breakpoint (the percentages are the no-JS fallback).
+   Every light layer lives inside .wall-layer, so the index's world
+   switcher crossfades the whole rig, colour and all. Legibility is
+   structural, as in the teasers: the vignette composites on top. */
 .hero {
+  --spot-x: 76%;     /* lamp and phone centre, from the hero's left edge */
+  --spot-key: 46%;   /* where the key light sits on the phone */
+  --spot-floor: 86%; /* the floor the pool lands on, just under the phone */
   position: relative; overflow: hidden;
   min-height: 100svh;
   display: flex; align-items: center;
@@ -180,13 +196,66 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero-bg .wall-layer {
   opacity: 0; transition: opacity 1.1s ease;
   background:
-    radial-gradient(85% 60% at 74% 4%, rgba(var(--glow),.30), rgba(var(--glow),0) 70%),
-    linear-gradient(180deg, var(--w0) 0%, var(--w1) 52%, var(--w2) 100%);
+    /* the pool the lamp throws on the floor under the phone */
+    radial-gradient(330px 98px at var(--spot-x) var(--spot-floor),
+      rgba(var(--glow),.50), rgba(var(--glow),.07) 58%, rgba(0,0,0,0) 78%),
+    /* the key light on the subject itself */
+    radial-gradient(340px 330px at var(--spot-x) var(--spot-key),
+      rgba(var(--glow),.26), rgba(0,0,0,0) 72%),
+    /* the walls, dimmed to near black so the beam has something to cut;
+       the floor stays the page colour so the next section joins it */
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--w0) 26%, #000006) 0%,
+      color-mix(in srgb, var(--w1) 34%, #000006) 50%,
+      var(--w2) 100%);
 }
 .hero-bg .wall-layer.on { opacity: 1; }
+/* the beam: a soft wedge of haze from the lamp down to the floor, with a
+   hot spot where it leaves the fixture (just above the hero's top edge, so
+   the header's nav never sits on the brightest pixels). Blurred as one
+   element so it reads as haze, not a shape; it sways and breathes very
+   slowly, like the teaser key light. */
+.hero-bg .wall-layer::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -80px; bottom: 0;
+  background:
+    radial-gradient(130px 30px at var(--spot-x) 56px,
+      rgba(255,255,255,.24), rgba(var(--glow),.42) 38%, rgba(0,0,0,0) 72%),
+    conic-gradient(from 156deg at var(--spot-x) 56px,
+      rgba(0,0,0,0) 0deg, rgba(var(--glow),.07) 9deg, rgba(var(--glow),.44) 24deg,
+      rgba(var(--glow),.07) 39deg, rgba(0,0,0,0) 48deg);
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 34%, rgba(0,0,0,.6) 66%, rgba(0,0,0,.16) 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 34%, rgba(0,0,0,.6) 66%, rgba(0,0,0,.16) 100%);
+  filter: blur(16px);
+  transform-origin: var(--spot-x) 56px;
+  animation: breathe 9s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+@keyframes breathe {
+  0%, 100% { opacity: .9; transform: rotate(-.5deg); }
+  50% { opacity: 1; transform: rotate(.5deg); }
+}
+/* dust in the beam: a few motes rising slowly through the light. site.js
+   places them inside the cone; they are white, so the index crossfade
+   never has to recolour them. */
+.motes { position: absolute; inset: 0; pointer-events: none; }
+.mote {
+  position: absolute; left: calc(var(--spot-x) + var(--mx)); top: var(--my);
+  width: var(--ms); height: var(--ms); border-radius: 50%;
+  background: #fff; opacity: 0;
+  animation: mote var(--md) linear infinite var(--mdl);
+  will-change: transform, opacity;
+}
+@keyframes mote {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  12% { opacity: var(--mo); }
+  88% { opacity: var(--mo); }
+  100% { transform: translate3d(var(--mdx), -160px, 0); opacity: 0; }
+}
 .hero-vignette {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.12) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 55%, var(--w2) 100%);
+  background:
+    radial-gradient(130% 100% at 50% 42%, rgba(0,0,0,0) 56%, rgba(0,0,0,.40) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.16) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 90%, var(--w2) 100%);
 }
 .hero-grid {
   position: relative; width: 100%;
@@ -291,8 +360,8 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 .modal-card {
   position: relative; max-width: 380px; width: 100%;
   padding: 36px 34px; border-radius: 20px;
-  background: #101119; border: 1px solid var(--hair);
-  box-shadow: 0 40px 90px rgba(0,0,0,.55);
+  background: linear-gradient(180deg, #16172a, #0f1019); border: 1px solid var(--hair);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.16), 0 40px 90px rgba(0,0,0,.55);
   transform: translateY(10px) scale(.98); transition: transform .3s var(--ease);
 }
 .modal-overlay.on .modal-card { transform: translateY(0) scale(1); }
@@ -325,6 +394,19 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
     0 0 0 5px #17151F, 0 0 0 6px rgba(255,255,255,.06),
     0 60px 130px rgba(0,0,0,.6);
   text-align: center; color: #fff;
+}
+/* the lamp above catches the top edge of the frame */
+.phone::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50px; pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), inset 0 0 0 1px rgba(255,255,255,.035);
+}
+/* the phone's own light, thrown back off the floor beneath it */
+.phone-stage::after {
+  content: ""; position: absolute; left: 50%; top: 100%; z-index: -1;
+  width: 306px; height: 110px; margin: 22px 0 0 -153px;
+  border-radius: 50% / 60%;
+  background: linear-gradient(180deg, rgba(var(--glow),.26), rgba(var(--glow),0) 80%);
+  filter: blur(16px); pointer-events: none;
 }
 .phone .screen {
   position: absolute; inset: 0;
@@ -394,7 +476,7 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
   padding: 14px 18px; border-radius: 14px;
   background: color-mix(in srgb, var(--w2) 55%, rgba(5,5,12,.6));
   border: 1px solid var(--hair);
-  box-shadow: 0 30px 70px rgba(0,0,0,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 30px 70px rgba(0,0,0,.5);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   text-align: left;
@@ -425,17 +507,39 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 .f2 { top: 45%; right: -4%; animation-delay: -4.6s; }
 .f3 { bottom: 8%; left: 2%; animation-delay: -1.2s; }
 
-/* ------------------------------------------------------------------ sections */
-.sec { position: relative; padding: clamp(84px, 11vh, 130px) 0; }
-/* a "band" section is its own room: tinted floor, hairline walls */
-.sec.band {
-  background:
-    radial-gradient(70% 90% at 50% 0%, rgba(var(--glow),.07), rgba(var(--glow),0) 70%),
-    color-mix(in srgb, var(--w1) 30%, transparent);
-  border-top: 1px solid var(--hair-2);
-  border-bottom: 1px solid var(--hair-2);
+/* ------------------------------------------------------------------ sections
+   The page is one stage. Sections are not rooms with walls: they are
+   stretches of the same floor, each under its own soft lamp (a pool of the
+   app's glow that fades in below the previous section and out before the
+   next), so the eye travels down one continuous space instead of across a
+   stack of bands. Structure comes from the numbered hairline over each
+   section head, the same rule the hero's world tabs wear. */
+.sec { position: relative; padding: clamp(84px, 11vh, 130px) 0; isolation: isolate; }
+/* The lamp hangs over the section's subject (the head and the first row of
+   content, which sit left of centre). The pool's box is capped in height
+   (Chrome will not take min() inside a gradient size), so the very tall
+   word-list sections keep it near their top instead of stretching it down
+   the whole table. */
+.sec::before {
+  content: ""; position: absolute; inset: 0; max-height: 1100px;
+  z-index: -1; pointer-events: none;
+  background: radial-gradient(70% 52% at 42% 30%, rgba(var(--glow),.13), rgba(var(--glow),0) 70%);
 }
-.sec-head { max-width: 720px; }
+/* a "band" used to be a filled stripe between hairlines; now it is the same
+   floor under a brighter lamp, so the page keeps its rhythm without an edge */
+.sec.band::before {
+  background:
+    radial-gradient(70% 52% at 42% 30%, rgba(var(--glow),.18), rgba(var(--glow),0) 70%),
+    radial-gradient(40% 26% at 42% 32%, rgba(var(--glow),.07), rgba(var(--glow),0) 70%);
+}
+.sec-head {
+  position: relative; max-width: 720px;
+  padding-top: 26px; border-top: 1px solid var(--hair-2);
+}
+.sec-head::before {
+  content: ""; position: absolute; top: -1px; left: 0;
+  width: 64px; height: 1px; background: var(--tint);
+}
 .sec-head .m { display: block; }
 .sec-head h2 {
   font-family: var(--serif);
@@ -455,14 +559,17 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
   margin-top: 52px;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
 }
+/* Every card on the page is the same glass as the hero's floating widgets:
+   a translucent pane with a rim light on its top edge, the app's glow
+   falling on it from above, seated on a soft shadow. No filled boxes. */
 .wcard {
   position: relative;
   border-radius: 24px; padding: 26px 28px 28px;
   background:
-    radial-gradient(120% 90% at 50% 0%, rgba(var(--glow),.14), rgba(var(--glow),0) 70%),
-    linear-gradient(180deg, color-mix(in srgb, var(--w1) 80%, var(--w0) 8%), var(--w2));
-  border: 1px solid rgba(255,255,255,.11);
-  box-shadow: 0 30px 70px rgba(0,0,0,.38);
+    radial-gradient(120% 90% at 50% 0%, rgba(var(--glow),.16), rgba(var(--glow),0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.045) 45%, rgba(255,255,255,.03) 100%), var(--w2);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.18), inset 0 -1px 0 rgba(0,0,0,.25), 0 30px 70px rgba(0,0,0,.38);
 }
 .wcard .step {
   position: absolute; top: 26px; right: 26px;
@@ -532,13 +639,13 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
     radial-gradient(120% 70% at 50% 0%, rgba(var(--glow),.30), rgba(var(--glow),0) 70%),
     linear-gradient(180deg, var(--w0) 0%, var(--w1) 55%, var(--w2) 100%);
   border: 1px solid rgba(255,255,255,.13);
-  box-shadow: 0 30px 70px rgba(0,0,0,.35);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.22), 0 30px 70px rgba(0,0,0,.35);
   transition: transform .35s var(--ease), box-shadow .35s, border-color .35s;
 }
 .app-card:hover {
   transform: translateY(-6px);
   border-color: color-mix(in srgb, var(--tint) 45%, transparent);
-  box-shadow: 0 44px 90px rgba(0,0,0,.5);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.26), 0 44px 90px rgba(0,0,0,.5);
 }
 .app-card .tag { align-self: flex-start; }
 .app-card .showpiece {
@@ -591,11 +698,15 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 }
 .tile {
   border-radius: 20px; padding: 26px 24px;
-  background: var(--panel);
-  border: 1px solid var(--hair-2);
-  transition: border-color .3s, background .3s;
+  background: linear-gradient(180deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.04) 50%, rgba(255,255,255,.028) 100%), var(--w2);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.14), 0 18px 44px rgba(0,0,0,.28);
+  transition: border-color .3s, transform .3s var(--ease), box-shadow .3s;
 }
-.tile:hover { border-color: var(--hair); background: rgba(255,255,255,.06); }
+.tile:hover {
+  border-color: rgba(255,255,255,.22); transform: translateY(-3px);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.2), 0 26px 56px rgba(0,0,0,.36);
+}
 .tile .m { display: block; }
 .tile h4 { font-size: 16px; font-weight: 600; letter-spacing: -.15px; margin-top: 14px; }
 .tile p { font-size: 13.5px; line-height: 1.6; color: var(--ink-2); margin-top: 8px; }
@@ -609,8 +720,9 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 .pack {
   font-size: 14px; font-weight: 600; color: var(--ink-2);
   padding: 12px 22px; border-radius: 999px;
-  background: rgba(255,255,255,.055);
-  border: 1px solid rgba(255,255,255,.13);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
   transition: all .3s ease;
 }
 .pack:hover {
@@ -659,15 +771,22 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 
 /* ------------------------------------------------------------------ plus panel */
 .plus-panel {
-  margin-top: 52px;
+  position: relative; margin-top: 52px;
   border-radius: 30px; padding: clamp(30px, 4vw, 48px);
   background:
-    radial-gradient(110% 130% at 88% 0%, rgba(var(--glow),.20), rgba(var(--glow),0) 60%),
-    linear-gradient(180deg, color-mix(in srgb, var(--w1) 85%, var(--w0) 6%), var(--w2));
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 30px 70px rgba(0,0,0,.35);
+    radial-gradient(110% 130% at 88% 0%, rgba(var(--glow),.22), rgba(var(--glow),0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.04) 50%, rgba(255,255,255,.03) 100%), var(--w2);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.25), 0 30px 70px rgba(0,0,0,.4);
   display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 4vw, 56px);
   align-items: center;
+}
+/* the panel stands on the stage floor: the lamp's pool spills out under it */
+.plus-panel::after {
+  content: ""; position: absolute; left: 6%; right: 6%; top: 100%; z-index: -1;
+  height: 160px; margin-top: -40px; pointer-events: none;
+  background: radial-gradient(50% 55% at 50% 32%, rgba(var(--glow),.30), rgba(var(--glow),0) 70%);
+  filter: blur(18px);
 }
 .plus-panel h3 {
   font-family: var(--serif);
@@ -678,8 +797,9 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 .price-cards { display: flex; flex-direction: column; gap: 12px; }
 .price {
   border-radius: 18px; padding: 20px 24px;
-  background: rgba(255,255,255,.055);
-  border: 1px solid rgba(255,255,255,.13);
+  background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .price.hot {
@@ -697,14 +817,75 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 }
 
 /* ------------------------------------------------------------------ CTA */
+/* The page closes on the teasers' "grid" rig (rigs.tsx, GridRig): the
+   night sky that has been filling in section by section (below) reaches
+   its densest here, over a neon floor in the app's own glow running to a
+   lit horizon, the retrowave set. The horizon sits at 78%, below the store
+   button, so the bloom rakes under the copy instead of behind it, and the
+   extra bottom padding gives the floor a few rows of grid. Sky and horizon
+   are gradients, the floor is one element in perspective whose lines
+   scroll toward the viewer a whole cell per cycle (the grid is periodic,
+   so it never pops), and the last layer fades it into the footer's wall. */
 .cta {
-  position: relative; overflow: hidden; text-align: center;
-  padding: clamp(110px, 16vh, 190px) 0;
+  --horizon: 78%;
+  position: relative; overflow: hidden; text-align: center; isolation: isolate;
+  padding: clamp(110px, 16vh, 190px) 0 clamp(170px, 24vh, 280px);
 }
+/* the sky, deepening from the previous section's floor toward the middle
+   and clearing at the horizon, and the horizon itself: a hot line with
+   bloom above and below it */
+.cta::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0) calc(var(--horizon) - 1px), rgba(var(--glow),.9) calc(var(--horizon) - 1px),
+      rgba(var(--glow),.9) calc(var(--horizon) + 1px), rgba(0,0,0,0) calc(var(--horizon) + 1px)) 50% 0 / 76% 100% no-repeat,
+    radial-gradient(38% 3.5% at 50% var(--horizon), rgba(var(--glow),.55), rgba(var(--glow),0) 70%),
+    radial-gradient(58% 13% at 50% var(--horizon), rgba(var(--glow),.75), rgba(var(--glow),0) 72%),
+    linear-gradient(180deg, rgba(2,2,10,0) 0%, rgba(2,2,10,.42) 34%, rgba(2,2,10,.14) 60%, rgba(0,0,0,0) var(--horizon));
+}
+/* the floor itself, in perspective, scrolling toward the camera */
 .cta .glowup {
-  position: absolute; inset: auto 0 0 0; height: 70%; pointer-events: none;
-  background: radial-gradient(55% 100% at 50% 100%, rgba(var(--glow),.22), rgba(var(--glow),0) 75%);
+  position: absolute; left: -60%; right: -60%; top: var(--horizon); bottom: -14%;
+  z-index: -1; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(var(--glow),.72) 0 3px, rgba(0,0,0,0) 3px 104px),
+    repeating-linear-gradient(0deg, rgba(var(--glow),.4) 0 3px, rgba(0,0,0,0) 3px 88px);
+  transform: perspective(340px) rotateX(76deg);
+  transform-origin: 50% 0%;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.85) 12%, #000 45%);
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.85) 12%, #000 45%);
+  animation: gridscroll 2.6s linear infinite;
+  will-change: background-position;
 }
+@keyframes gridscroll { to { background-position: 0 88px; } }
+/* the floor runs on into the footer's dark wall instead of stopping on it */
+.cta::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 22%; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0), var(--w2));
+}
+/* the sky's stars stay above the horizon */
+.cta .stars { bottom: 24%; }
+
+/* ------------------------------------------------------------------ the night sky
+   site.js drops a starfield into every section after the hero, denser with
+   each section down the page. A field is dark until its section scrolls
+   into view (.sky-on), then each star fades up on its own small delay, so
+   the scroll reads as the night filling with stars; about a third of them
+   keep twinkling. */
+.stars { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.star {
+  position: absolute; left: var(--sx); top: var(--sy);
+  width: var(--ss); height: var(--ss); border-radius: 50%;
+  background: rgba(255,255,255,.95); opacity: 0;
+  transition: opacity 1.4s ease var(--sd);
+}
+.sky-on .star { opacity: var(--so); }
+.sky-on .star.tw { animation: twinkle var(--st) ease-in-out infinite; animation-delay: calc(var(--sd) + 1.4s); }
+@keyframes twinkle {
+  0%, 100% { opacity: var(--so); }
+  50% { opacity: calc(var(--so) * .3); }
+}
+
 .cta h2 {
   position: relative;
   font-family: var(--serif);
@@ -715,13 +896,13 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 .cta .store-row { justify-content: center; position: relative; }
 
 /* ------------------------------------------------------------------ footer */
-footer { border-top: 1px solid var(--hair-2); }
+footer { background: linear-gradient(180deg, var(--w2) 0%, color-mix(in srgb, var(--w2) 55%, #000006) 100%); }
 .foot-inner {
   max-width: 1200px; margin: 0 auto; padding: 56px min(5vw, 56px) 64px;
   display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between;
 }
 .foot-brand p { max-width: 240px; margin-top: 14px; font-size: 13px; line-height: 1.7; color: var(--ink-3); }
-.foot-cols { display: flex; gap: clamp(40px, 6vw, 96px); }
+.foot-cols { display: flex; flex-wrap: wrap; gap: 32px clamp(40px, 6vw, 96px); }
 .foot-col .m { display: block; margin-bottom: 16px; }
 .foot-col a { display: block; font-size: 13.5px; color: var(--ink-2); padding: 5px 0; transition: color .25s; }
 .foot-col a:hover { color: var(--ink); }
@@ -734,7 +915,8 @@ footer { border-top: 1px solid var(--hair-2); }
 .reveal.d3 { transition-delay: .24s; }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .lines .l > span { opacity: 1; transform: none; transition: none; }
-  .float-card, .grain { animation: none; }
+  .float-card, .grain, .hero-bg .wall-layer::before, .cta .glowup, .mote, .star { animation: none; }
+  .star { transition: none; }
 }
 
 /* ------------------------------------------------------------------ responsive */
@@ -747,6 +929,7 @@ footer { border-top: 1px solid var(--hair-2); }
 }
 @media (max-width: 980px) {
   .hero { min-height: 0; padding: 140px 0 80px; }
+  .motes { display: none; } /* the beam runs behind the copy here; no dust over words */
   .hero-grid { grid-template-columns: 1fr; gap: 72px; }
   .cards3 { grid-template-columns: 1fr; }
   .family { grid-template-columns: repeat(2, 1fr); }
