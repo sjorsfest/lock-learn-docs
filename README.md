@@ -35,7 +35,7 @@ spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
                       below): vocabulary list pages (chinese/hsk-1 …
                       hsk-6, japanese/jlpt-n5 … jlpt-n1, korean/topik-i,
                       topik-ii-intermediate, topik-ii-advanced), each with
-                      a quiz/ subpage, plus one hub per flavor
+                      a sibling <level>-practice-test/ page, plus one hub per flavor
                       (chinese/hsk-vocabulary, japanese/jlpt-vocabulary,
                       korean/topik-vocabulary). Spanish is parked until its
                       word-list license is cleared (sitegen/README.md).

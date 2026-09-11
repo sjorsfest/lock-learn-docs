@@ -54,12 +54,17 @@
   </url>
   <!-- generated:start (sitegen/build.py owns this block; edit nothing inside) -->
   <url>
+    <loc>https://locklearn.xyz/chinese/hsk-1-practice-test/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://locklearn.xyz/chinese/hsk-1/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/chinese/hsk-1/quiz/</loc>
+    <loc>https://locklearn.xyz/chinese/hsk-2-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -69,7 +74,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/chinese/hsk-2/quiz/</loc>
+    <loc>https://locklearn.xyz/chinese/hsk-3-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -79,7 +84,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/chinese/hsk-3/quiz/</loc>
+    <loc>https://locklearn.xyz/chinese/hsk-4-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -89,7 +94,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/chinese/hsk-4/quiz/</loc>
+    <loc>https://locklearn.xyz/chinese/hsk-5-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -99,7 +104,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/chinese/hsk-5/quiz/</loc>
+    <loc>https://locklearn.xyz/chinese/hsk-6-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -109,14 +114,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/chinese/hsk-6/quiz/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://locklearn.xyz/chinese/hsk-vocabulary/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://locklearn.xyz/japanese/jlpt-n1-practice-test/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://locklearn.xyz/japanese/jlpt-n1/</loc>
@@ -124,7 +129,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/japanese/jlpt-n1/quiz/</loc>
+    <loc>https://locklearn.xyz/japanese/jlpt-n2-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -134,7 +139,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/japanese/jlpt-n2/quiz/</loc>
+    <loc>https://locklearn.xyz/japanese/jlpt-n3-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -144,7 +149,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/japanese/jlpt-n3/quiz/</loc>
+    <loc>https://locklearn.xyz/japanese/jlpt-n4-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -154,7 +159,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/japanese/jlpt-n4/quiz/</loc>
+    <loc>https://locklearn.xyz/japanese/jlpt-n5-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -164,14 +169,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/japanese/jlpt-n5/quiz/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://locklearn.xyz/japanese/jlpt-vocabulary/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://locklearn.xyz/korean/topik-i-practice-test/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://locklearn.xyz/korean/topik-i/</loc>
@@ -179,7 +184,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/korean/topik-i/quiz/</loc>
+    <loc>https://locklearn.xyz/korean/topik-ii-advanced-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -189,7 +194,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://locklearn.xyz/korean/topik-ii-advanced/quiz/</loc>
+    <loc>https://locklearn.xyz/korean/topik-ii-intermediate-practice-test/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.5</priority>
   </url>
@@ -197,11 +202,6 @@
     <loc>https://locklearn.xyz/korean/topik-ii-intermediate/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://locklearn.xyz/korean/topik-ii-intermediate/quiz/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://locklearn.xyz/korean/topik-vocabulary/</loc>
