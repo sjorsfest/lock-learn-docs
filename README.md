@@ -31,6 +31,18 @@ arabic/index.html     TEMPORARILY DISABLED (2026-08-14, pending extra
 korean/index.html     Lock&Learn Korean in its taegeuk cobalt world.
 spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
                       reading line anywhere: Spanish cards have none).
+<flavor>/<level>/     GENERATED (sitegen/build.py, see "Generated pages"
+                      below): vocabulary list pages (chinese/hsk-1 …
+                      hsk-6, japanese/jlpt-n5 … jlpt-n1, korean/topik-i,
+                      topik-ii-intermediate, topik-ii-advanced), each with
+                      a quiz/ subpage, plus one hub per flavor
+                      (chinese/hsk-vocabulary, japanese/jlpt-vocabulary,
+                      korean/topik-vocabulary). Spanish is parked until its
+                      word-list license is cleared (sitegen/README.md).
+                      Never hand-edit these.
+assets/lists.css      Styles for the generated pages only (table,
+assets/lists.js       flashcard mode, sample panels, quiz, sticky store
+                      bar) and their behaviors. Product pages load neither.
 assets/site.css       Shared design system. App worlds are themed with
                       [data-app="trivia|chinese|japanese|arabic|korean|spanish"],
                       which sets the wall gradient, glow, accent tint and
@@ -57,7 +69,10 @@ favicon.ico           apple-touch-icon.png (180px, opaque) are baked from
                       favicon from the index page.
 sitemap.xml           Every live page with lastmod dates (the Arabic entry
                       is commented out while the app is disabled). Bump
-                      lastmod for pages you change before publishing.
+                      lastmod for pages you change before publishing. The
+                      block between the generated:start / generated:end
+                      comments is owned by sitegen/build.py; edit nothing
+                      inside it.
 robots.txt            Allow-all plus the sitemap URL.
 CNAME                 The custom domain (locklearn.xyz) for GitHub Pages.
                       It must live here: publish-site mirrors site/ with
@@ -94,15 +109,42 @@ Sample words and facts on the pages are real entries from
 `shared/content/*/facts.json`. Keep them real: never invent content for
 mockups.
 
+## Generated pages
+
+The vocabulary list, hub and practice-quiz pages are rendered from
+`shared/content/<flavor>/facts.json` by `sitegen/build.py` (`make site-pages`
+from the repo root; `make check-site-pages` fails if the committed output is
+stale, and `make publish-site` runs that check first). Config and copy live
+in `sitegen/flavors.py`; the how and why, including the publication policy
+(full word lists everywhere, example sentences only for the free pack plus a
+25-row sample on paid levels, no trivia facts), are in `sitegen/README.md`.
+After any content export: `make site-pages`, commit the regenerated pages,
+`sitegen/manifest.json` and `sitemap.xml` together.
+
+The product pages link into them: the `.packs` chips in each "Levels"
+section are links to the level pages, a second `.packs-note` line links the
+hub and the free level's quiz, and the index carries a "Free word lists" line
+under the family grid (the Spanish page keeps plain chips while its lists
+are parked). Keep those links in step when a slug changes.
+
 ## SEO conventions
 
 Every page carries a keyword-targeted `<title>` and meta description, a
 canonical URL, full Open Graph + Twitter card tags, and JSON-LD structured
 data: `Organization` + `WebSite` on the index, `MobileApplication` +
-`BreadcrumbList` + `FAQPage` on each product page. The product pages end
-with a visible "05 - Questions" FAQ section (`#faq`); its text and the
-`FAQPage` JSON-LD in the same page's head are the same answers and must be
-edited together, and every claim in them must stay true to the apps.
+`BreadcrumbList` + `FAQPage` on each product page, and on the generated
+pages `BreadcrumbList` + `WebPage` (about the app) + `FAQPage`, plus
+`ItemList` on hubs and `Quiz` (with the three sample questions) on quiz
+pages. The product pages end with a visible "05 - Questions" FAQ section
+(`#faq`); its text and the `FAQPage` JSON-LD in the same page's head are the
+same answers and must be edited together, and every claim in them must stay
+true to the apps (the generator builds both from one list, so parity there
+is structural). Since 2023 Google shows FAQ rich results only for government
+and health sites; `FAQPage` stays for consistency, not for snippets.
+
+Product page titles follow the pattern "Learn <Language> Words on Your
+iPhone Lock Screen: <Exam> Vocabulary App | Lock&Learn <Language>", chosen
+from the 2026-09-11 keyword research in `store/seo-keyword-baseline.md`.
 
 The canonical base URL is `https://locklearn.xyz/` (served via `site/CNAME`;
 GitHub Pages redirects the old sjorsfest.github.io/lock-learn-docs/ URLs
@@ -117,7 +159,10 @@ data; add `aggregateRating` only if real App Store ratings exist.
 
 - No em dashes anywhere.
 - No content counts ("4,991 words") in marketing copy; topic and level
-  *names* are fine. Monthly updates are part of the promise.
+  *names* are fine. Monthly updates are part of the promise. Documented
+  exception: the generated list, hub and quiz pages state exact list sizes
+  ("all 150 words"), because the size is the page's subject and what the
+  search asks for. The product pages and the index still never do.
 
 ## Screenshots / QA
 
@@ -143,9 +188,12 @@ modal, which now links the four live apps and says Spanish is close
 behind.
 
 When a listing goes live, swap that page's two `<button>`s for `<a href>`s,
-drop the date from the store note, delete the page's modal markup, and
-update the same app's `app_store_url` in `teaser/config.py` (the ones that
-are still `id0000000000` are the apps that have not shipped). When the last
+drop the date from the store note, delete the page's modal markup, set
+`live=True` and the `store_url` on that flavor in `sitegen/flavors.py` and
+run `make site-pages` (its generated pages carry the same button state and
+modal), and update the same app's `app_store_url` in `teaser/config.py`
+(the ones that are still `id0000000000` are the apps that have not
+shipped). When the last
 app is out, the modal JS block in `site.js` and the `.modal-*` CSS can go
 with it. Site links use the country-less
 `https://apps.apple.com/app/<slug>/id<id>` form so Apple routes each

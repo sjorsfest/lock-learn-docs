@@ -629,6 +629,9 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
   letter-spacing: .16em; margin-left: 8px; vertical-align: 1px;
 }
 .packs-note { margin-top: 22px; }
+.packs-note + .packs-note { margin-top: 10px; }
+.packs-note a, .family-note a { color: var(--tint); }
+.packs-note a:hover, .family-note a:hover { border-bottom: 1px solid var(--tint); }
 
 /* ------------------------------------------------------------------ faq */
 .faq { margin-top: 52px; max-width: 780px; border-top: 1px solid var(--hair-2); }
