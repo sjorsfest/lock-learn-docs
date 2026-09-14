@@ -122,10 +122,9 @@ Arabic for Arabic ones), the interface whispers sans (Inter), meta labels
 are mono (IBM Plex Mono). Wall gradients, glows and accents come from
 `teaser/config.py` and each app's `Brand.swift` (registry:
 `shared/brand/README.md`); the Arabic (oasis teal), Korean (taegeuk
-cobalt) and Spanish (saffron amber) worlds, not yet in the teaser config,
-derive from their brand identities (`Brand.swift` accents and icon
-gradients; for Spanish, whose app is not yet cloned, the blueprint's
-identity table). Fonts load from Google Fonts;
+cobalt) and Spanish (saffron amber) worlds derive from the same brand
+identities (`Brand.swift` accents and icon gradients). Fonts load from
+Google Fonts;
 CJK families are served as unicode-range slices so only used glyphs
 download. Arabic headword slots get a taller line box in site.css so
 stacked harakat never clip, and Arabic example sentences carry `dir="rtl"`
@@ -229,17 +228,17 @@ every element immediately. Useful for full-page screenshots:
 Each page's two `.store-row`s carry an App Store button, in one of two
 states depending on whether that app is live:
 
-- **Live** (trivia, chinese, japanese, korean since 2026-09-01): an
-  `<a class="btn-store" href>` straight to the listing, with a plain
-  `Free on iOS` note. Those pages have no `#launchModal` markup at all.
-- **Not live yet** (spanish): still a
+- **Live** (trivia, chinese, japanese, korean since 2026-09-01, spanish
+  since 2026-09-14): an `<a class="btn-store" href>` straight to the
+  listing, with a plain `Free on iOS` note. Those pages have no
+  `#launchModal` markup at all.
+- **Not live yet** (none at the moment; arabic is parked, see above): a
   `<button data-open-modal="launch">` opening the `#launchModal` overlay
   (markup at the end of `<body>`, behavior in `assets/site.js`), with a
-  `launching September 18` note and a per-app line in the modal.
+  `launching <date>` note and a per-app line in the modal.
 
 `index.html` is the family page, so both its buttons keep opening the
-modal, which now links the four live apps and says Spanish is close
-behind.
+modal, which links the five live apps.
 
 When a listing goes live, swap that page's two `<button>`s for `<a href>`s,
 drop the date from the store note, delete the page's modal markup, set
