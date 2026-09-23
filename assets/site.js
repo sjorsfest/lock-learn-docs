@@ -65,9 +65,11 @@
     };
     const aim = () => {
       const o = offset(phone);
+      // on phones the stage crops the phone to its top; light what shows
+      const h = Math.min(phone.offsetHeight, phone.parentElement.offsetHeight);
       hero.style.setProperty('--spot-x', `${Math.round(o.x + phone.offsetWidth / 2)}px`);
-      hero.style.setProperty('--spot-key', `${Math.round(o.y + phone.offsetHeight * 0.36)}px`);
-      hero.style.setProperty('--spot-floor', `${Math.round(o.y + phone.offsetHeight + 26)}px`);
+      hero.style.setProperty('--spot-key', `${Math.round(o.y + h * 0.36)}px`);
+      hero.style.setProperty('--spot-floor', `${Math.round(o.y + h + 26)}px`);
     };
     if (phone) {
       aim();

@@ -159,6 +159,18 @@ sits under the store button, the page-wide night sky (see "Design
 language") reaches its densest above it, and the floor scroll is the only
 motion.
 
+On phones (560px and under, since 2026-09-23) every hero turns into a
+compact, centered first screen so the value and the store button land
+without scrolling: the phone comes first, scaled down and cropped to its
+clock and widget with a fade into the floor, then the headline, the sub
+and a full-width store button; the float cards are hidden. The copy
+column goes `display: contents` so each piece is ordered on its own; on
+the index the world tabs (numbers dropped) sit in one row right under the
+phone and the Explore line moves below the button, and the eyebrow is
+hidden there. `site.js` aims the lamp at the visible part of the phone
+(the smaller of the phone and its stage), so the floor pool lands at the
+crop.
+
 ## Generated pages
 
 The vocabulary list, hub and practice-quiz pages are rendered from
