@@ -196,17 +196,19 @@
 /* ------------------------------------------------------------------ sticky store bar (phones) */
 .sticky-cta {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-  display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
   background: color-mix(in srgb, var(--w2) 88%, transparent);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid var(--hair-2);
   transform: translateY(110%); transition: transform .35s var(--ease);
 }
 .sticky-cta.on { transform: none; }
-.sticky-cta .t { font-size: 13px; line-height: 1.35; color: var(--ink-2); }
-.sticky-cta .btn-store { padding: 11px 18px; font-size: 13px; box-shadow: none; flex: none; }
-.sticky-cta .btn-store svg { width: 13px; height: 16px; margin-top: -2px; }
+/* one line at every phone width: the bar copy is kept short in render.py
+   and never wraps */
+.sticky-cta .t { min-width: 0; font-size: 12px; line-height: 1.35; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky-cta .btn-store { gap: 8px; padding: 10px 14px; font-size: 13px; box-shadow: none; flex: none; }
+.sticky-cta .btn-store svg { width: 12px; height: 15px; margin-top: -2px; }
 @media (min-width: 981px) { .sticky-cta { display: none; } }
 
 /* ------------------------------------------------------------------ quiz */
