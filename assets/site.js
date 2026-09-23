@@ -231,7 +231,7 @@
       ],
     },
     spanish: {
-      line: 'Spanish words and expressions from A1 to C2, straight from the Cervantes curriculum. <a href="spanish/">Explore &rarr;</a>',
+      line: 'Spanish words and expressions from A1 to C2, one glance at a time. The meaning arrives on the tap. <a href="spanish/">Explore &rarr;</a>',
       widget: `
         <div class="wchip"><span class="dot"></span>CEFR A1</div>
         <div class="whanzi" lang="es">luna</div>

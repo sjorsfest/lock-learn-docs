@@ -408,12 +408,40 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
   background: linear-gradient(180deg, rgba(var(--glow),.26), rgba(var(--glow),0) 80%);
   filter: blur(16px); pointer-events: none;
 }
+/* The wallpaper is the onboarding hook's night sky (ios/Core/
+   LockScreenNightSky.swift): a seeded starfield denser toward the top, two
+   tint nebulae, a twinkling third of the stars and a shooting star under
+   the widget on the app's own schedule (first at 2.4s, then every 8.5s).
+   The star SVGs come from sitegen/lock_sky.py; rerun it, never hand-edit. */
 .phone .screen {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; overflow: hidden;
   background:
-    radial-gradient(85% 50% at 50% 8%, rgba(var(--glow),.34), rgba(var(--glow),0) 70%),
-    radial-gradient(70% 26% at 50% 30%, rgba(var(--glow),.22), rgba(var(--glow),0) 75%),
+    url(lock-sky.svg) center top / cover no-repeat,
+    radial-gradient(circle 200px at 18% 34%, rgba(var(--glow),.30), rgba(var(--glow),0)),
+    radial-gradient(circle 250px at 84% 88%, rgba(var(--glow),.24), rgba(var(--glow),0)),
+    radial-gradient(85% 50% at 50% 8%, rgba(var(--glow),.30), rgba(var(--glow),0) 70%),
+    radial-gradient(70% 26% at 50% 30%, rgba(var(--glow),.18), rgba(var(--glow),0) 75%),
     linear-gradient(180deg, var(--w0) 0%, var(--w1) 50%, var(--w2) 100%);
+}
+.phone .screen::before {
+  content: ""; position: absolute; inset: 0;
+  background: url(lock-sky-tw.svg) center top / cover no-repeat;
+  animation: sky-twinkle 3.6s ease-in-out infinite alternate;
+}
+@keyframes sky-twinkle { from { opacity: 1; } to { opacity: .35; } }
+.phone .screen::after {
+  content: ""; position: absolute; left: 68%; top: 50%;
+  width: 96px; height: 1.5px; border-radius: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,0));
+  box-shadow: -1px 0 4px rgba(255,255,255,.6);
+  transform-origin: left center; opacity: 0;
+  animation: sky-shoot 8.5s linear 2.4s infinite;
+}
+@keyframes sky-shoot {
+  0%   { opacity: 0; transform: rotate(-26deg) translateX(0) scaleX(.2); }
+  5%   { opacity: 1; transform: rotate(-26deg) translateX(-110px) scaleX(1); }
+  10.5%{ opacity: 0; transform: rotate(-26deg) translateX(-210px) scaleX(.3); }
+  100% { opacity: 0; transform: rotate(-26deg) translateX(-210px) scaleX(.3); }
 }
 .island {
   position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
@@ -916,6 +944,8 @@ footer { background: linear-gradient(180deg, var(--w2) 0%, color-mix(in srgb, va
 @media (prefers-reduced-motion: reduce) {
   .reveal, .lines .l > span { opacity: 1; transform: none; transition: none; }
   .float-card, .grain, .hero-bg .wall-layer::before, .cta .glowup, .mote, .star { animation: none; }
+  .phone .screen::before { animation: none; opacity: .8; }
+  .phone .screen::after { display: none; }
   .star { transition: none; }
 }
 
