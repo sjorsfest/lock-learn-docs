@@ -57,8 +57,9 @@ assets/site.js        Header state, masked headline reveals, reveal-on-scroll,
                       hero parallax, the stage light that aims the hero's
                       lamp at the phone and scatters the dust in its beam,
                       the index world switcher, and the modal the store
-                      buttons open on pages whose app is not on the store
-                      yet (live app pages link out instead, and carry no
+                      buttons open: the index's app picker, and on pages
+                      whose app is not on the store yet a launch notice
+                      (live app pages link out instead, and carry no
                       modal markup).
 support.html          Support page (plain, self-contained).
 privacy.html          Privacy policy (plain, self-contained).
@@ -169,7 +170,17 @@ the index the world tabs (numbers dropped) sit in one row right under the
 phone and the Explore line moves below the button, and the eyebrow is
 hidden there. `site.js` aims the lamp at the visible part of the phone
 (the smaller of the phone and its stage), so the floor pool lands at the
-crop.
+crop. The generated pages' `.list-hero` is excluded and keeps its own
+phone hero from `lists.css`.
+
+The rest of the page follows the same principle on phones (one media
+block in `site.css`): sections sit closer together, the `.cards3` loop
+cards and the index's `.family` app cards become swipeable scroll-snap
+rails whose next card peeks in at the edge (their cards skip the reveal
+animation, since cards scrolled inside a rail never reach the viewport
+observer), numbered `.tile`s become a compact hairline list, and the Plus
+panel, FAQ and closing CTA tighten, with the CTA's store button full
+width like the hero's.
 
 ## Generated pages
 
@@ -250,7 +261,10 @@ states depending on whether that app is live:
   `launching <date>` note and a per-app line in the modal.
 
 `index.html` is the family page, so both its buttons keep opening the
-modal, which links the five live apps.
+modal, which there is an app picker (`.modal-card.picker`): one tinted
+row per live app with the top nav's flag or emoji, its exam line and an
+arrow straight to the listing. On phones it rises as a bottom sheet. A
+flavor that ships adds a `.pick` row next to its nav link.
 
 When a listing goes live, swap that page's two `<button>`s for `<a href>`s,
 drop the date from the store note, delete the page's modal markup, set
@@ -259,8 +273,8 @@ run `make site-pages` (its generated pages carry the same button state and
 modal), and update the same app's `app_store_url` in `teaser/config.py`
 (the ones that are still `id0000000000` are the apps that have not
 shipped). When the last
-app is out, the modal JS block in `site.js` and the `.modal-*` CSS can go
-with it. Site links use the country-less
+app is out, the index's picker still needs the modal JS block in
+`site.js` and the `.modal-*` CSS, so keep both. Site links use the country-less
 `https://apps.apple.com/app/<slug>/id<id>` form so Apple routes each
 visitor to their own storefront.
 

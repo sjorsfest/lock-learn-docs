@@ -385,6 +385,46 @@ h1.display em { font-style: italic; font-weight: 500; color: var(--tint); }
 }
 .modal-close:hover { color: var(--ink); background: rgba(255,255,255,.08); }
 
+/* app picker (the index's store button): one glass row per app, each in
+   its own world's tint, with the top nav's flag or emoji as its mark. On
+   phones the card becomes a bottom sheet (see the responsive block). */
+.modal-card.picker { max-width: 420px; padding: 32px 26px 24px; }
+.modal-card.picker h3 { font-size: 26px; font-weight: 550; letter-spacing: -.02em; margin-top: 10px; }
+.modal-card.picker > p { font-size: 14px; margin-top: 6px; }
+.sheet-grip { display: none; }
+.picks { display: flex; flex-direction: column; gap: 8px; margin-top: 22px; }
+.pick {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px 12px 12px; border-radius: 16px;
+  background:
+    radial-gradient(90% 140% at 0% 50%, rgba(var(--glow),.16), rgba(var(--glow),0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+  border: 1px solid rgba(255,255,255,.11);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+  transition: border-color .25s, background-color .25s, transform .25s var(--ease);
+}
+.pick:hover, .pick:focus-visible {
+  border-color: color-mix(in srgb, var(--tint) 55%, transparent);
+  transform: translateY(-1px);
+}
+.pick:active { transform: scale(.985); }
+.pick-e {
+  flex: none; width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; line-height: 1;
+  background: linear-gradient(180deg, var(--w0), var(--w1));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 4px 14px rgba(0,0,0,.3);
+}
+.pick-t { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.pick-t b { font-family: var(--serif); font-size: 17px; font-weight: 600; letter-spacing: -.2px; line-height: 1.25; }
+.pick-t small {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--tint); margin-top: 3px;
+}
+.pick-go { flex: none; color: var(--ink-3); transition: color .25s, transform .25s var(--ease); }
+.pick:hover .pick-go { color: var(--tint); transform: translateX(3px); }
+
 /* ------------------------------------------------------------------ phone */
 .phone-stage { position: relative; display: flex; justify-content: center; will-change: transform; }
 .phone {
@@ -981,31 +1021,114 @@ footer { background: linear-gradient(180deg, var(--w2) 0%, color-mix(in srgb, va
    and widget and fading into the floor, then the headline, a short sub and
    the button. The copy column dissolves (display: contents) so each piece
    can be ordered on its own; on the index the world tabs sit right under
-   the phone they switch, and the Explore line moves below the button. */
+   the phone they switch, and the Explore line moves below the button.
+   The generated word-list pages (.list-hero) keep their own phone hero
+   from lists.css: there the list, not the phone, is what the visitor came for. */
 @media (max-width: 560px) {
-  .hero { padding: 76px 0 44px; }
-  .hero-grid { display: flex; flex-direction: column; align-items: center; gap: 0; text-align: center; }
-  .hero-grid > div:first-child { display: contents; }
-  .hero-grid .phone-stage {
+  .hero:not(.list-hero) { padding: 76px 0 44px; }
+  .hero:not(.list-hero) .hero-grid { display: flex; flex-direction: column; align-items: center; gap: 0; text-align: center; }
+  .hero:not(.list-hero) .hero-grid > div:first-child { display: contents; }
+  .hero:not(.list-hero) .hero-grid .phone-stage {
     order: 0; width: 100%; height: 280px; overflow: hidden;
     -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
     mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
   }
-  .hero-grid .phone-stage::after { display: none; }
-  .hero-grid .phone { transform: scale(.76); transform-origin: 50% 0; flex: none; }
-  .hero-grid .float-card { display: none; }
-  .hero-grid .worlds { order: 1; }
-  .hero-grid > div > .m { order: 2; margin-top: 18px; font-size: 10px; }
-  .hero-grid h1.display { order: 3; font-size: 34px; margin-top: 12px; }
-  .hero-grid .hero-sub { order: 4; margin-top: 12px; font-size: 14.5px; line-height: 1.5; max-width: 340px; }
-  .hero-grid .store-row { order: 5; margin-top: 20px; width: 100%; flex-direction: column; gap: 12px; }
-  .hero-grid .btn-store { width: 100%; max-width: 340px; justify-content: center; padding: 16px 28px; font-size: 15.5px; }
-  .hero-grid .world-line { order: 6; margin-top: 26px; min-height: 0; font-size: 16px; }
-  .hero-grid .world-line a { display: inline-block; margin: 6px 0 0; }
+  .hero:not(.list-hero) .hero-grid .phone-stage::after { display: none; }
+  .hero:not(.list-hero) .hero-grid .phone { transform: scale(.76); transform-origin: 50% 0; flex: none; }
+  .hero:not(.list-hero) .hero-grid .float-card { display: none; }
+  .hero:not(.list-hero) .hero-grid .worlds { order: 1; }
+  .hero:not(.list-hero) .hero-grid > div > .m { order: 2; margin-top: 18px; font-size: 10px; }
+  .hero:not(.list-hero) .hero-grid h1.display { order: 3; font-size: 34px; margin-top: 12px; }
+  .hero:not(.list-hero) .hero-grid .hero-sub { order: 4; margin-top: 12px; font-size: 14.5px; line-height: 1.5; max-width: 340px; }
+  .hero:not(.list-hero) .hero-grid .store-row { order: 5; margin-top: 20px; width: 100%; flex-direction: column; gap: 12px; }
+  .hero:not(.list-hero) .hero-grid .btn-store { width: 100%; max-width: 340px; justify-content: center; padding: 16px 28px; font-size: 15.5px; }
+  .hero:not(.list-hero) .hero-grid .world-line { order: 6; margin-top: 26px; min-height: 0; font-size: 16px; }
+  .hero:not(.list-hero) .hero-grid .world-line a { display: inline-block; margin: 6px 0 0; }
   /* index: the tabs become one compact row directly under the phone */
   .worlds { margin-top: 4px; flex-wrap: nowrap; justify-content: center; gap: 14px; }
   .w-tab { font-size: 10px; letter-spacing: .1em; padding-bottom: 8px; }
   .w-tab i { display: none; }
   /* the index's eyebrow is the least useful line on a small screen */
   #worldHero .hero-grid > div > .m { display: none; }
+}
+/* The rest of the page on phones, on the hero's principle: less floor
+   between sections, content sooner. Card rows that stack into a tall
+   tower (.cards3, the index's .family) become swipeable rails whose next
+   card peeks in at the edge; numbered tiles become a compact list with
+   hairlines instead of boxes; the Plus panel, FAQ and closing CTA tighten,
+   and the CTA's store button goes full width like the hero's. */
+@media (max-width: 560px) {
+  .sec { padding: 60px 0; }
+  .sec-head { padding-top: 20px; }
+  .sec-head h2 { font-size: 30px; margin-top: 12px; }
+  .sec-head .lede { margin-top: 12px; font-size: 15px; line-height: 1.6; }
+
+  /* rails: bleed to the screen edges, snap card by card. Cards scrolled
+     inside a rail never intersect the viewport for the reveal observer,
+     so they show without it. */
+  .cards3, .family {
+    display: flex; gap: 12px; margin: 30px calc(-1 * min(5vw, 56px)) 0;
+    padding: 2px min(5vw, 56px) 22px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-padding-inline: min(5vw, 56px);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .cards3::-webkit-scrollbar, .family::-webkit-scrollbar { display: none; }
+  .cards3 > *, .family > * { flex: 0 0 84%; scroll-snap-align: start; }
+  .cards3 > .reveal, .family > .reveal { opacity: 1; transform: none; }
+  .wcard { padding: 22px 22px 24px; box-shadow: inset 0 1.5px 0 rgba(255,255,255,.18), inset 0 -1px 0 rgba(0,0,0,.25), 0 14px 30px rgba(0,0,0,.3); }
+  .wcard .step { top: 22px; right: 22px; }
+  .app-card { min-height: 0; padding: 20px 20px 20px; box-shadow: inset 0 1.5px 0 rgba(255,255,255,.22), 0 14px 30px rgba(0,0,0,.3); }
+  .app-card .showpiece { padding: 22px 0 18px; }
+  .app-card .showpiece .hz { font-size: 46px; }
+  .app-card .about { min-height: 0; }
+  .app-card .go { margin-top: 12px; }
+  .family-note { margin-top: 6px; }
+
+  /* tiles: a numbered list, number in the margin, hairline between rows */
+  .tiles { margin-top: 26px; gap: 0; border-top: 1px solid var(--hair-2); }
+  .tile, .tile:hover {
+    display: grid; grid-template-columns: 34px 1fr; column-gap: 6px;
+    padding: 18px 0; border-radius: 0;
+    background: none; border: 0; border-bottom: 1px solid var(--hair-2);
+    box-shadow: none; transform: none;
+  }
+  .tile .m { grid-row: span 2; padding-top: 3px; }
+  .tile h4 { margin-top: 0; font-size: 15.5px; }
+  .tile p { margin-top: 4px; font-size: 13.5px; line-height: 1.55; }
+
+  .packs { margin-top: 28px; gap: 8px; }
+  .pack { padding: 10px 18px; }
+
+  .plus-panel { margin-top: 30px; padding: 24px 20px; border-radius: 24px; gap: 22px; }
+  .plus-panel .lead { font-size: 14.5px; line-height: 1.6; }
+  .price { padding: 16px 18px; }
+
+  .faq { margin-top: 26px; }
+  .faq summary { padding: 18px 0; font-size: 17px; gap: 18px; }
+  .faq .a { padding: 0 0 20px; font-size: 14px; line-height: 1.65; }
+
+  .cta { padding: 72px 0 150px; }
+  .cta h2 { font-size: 36px; }
+  .cta .store-row { flex-direction: column; gap: 12px; margin-top: 28px; }
+  .cta .btn-store { width: 100%; max-width: 340px; justify-content: center; padding: 16px 28px; font-size: 15.5px; }
+
+  .foot-inner { padding: 44px min(5vw, 56px) 48px; gap: 36px; }
+
+  /* the app picker rises as a bottom sheet, rows within thumb reach */
+  .modal-overlay:has(.picker) { align-items: flex-end; padding: 0; }
+  .modal-card.picker {
+    max-width: none; border-radius: 26px 26px 0 0; border-bottom: 0;
+    padding: 12px 18px calc(18px + env(safe-area-inset-bottom));
+    transform: translateY(100%);
+  }
+  .modal-overlay.on .modal-card.picker { transform: none; }
+  .sheet-grip {
+    display: block; width: 38px; height: 5px; border-radius: 3px;
+    margin: 0 auto 18px; background: rgba(255,255,255,.22);
+  }
+  .modal-card.picker .modal-close { top: 22px; right: 14px; }
+  .modal-card.picker h3 { font-size: 24px; }
+  .picks { margin-top: 18px; }
+  .pick { padding: 11px 14px 11px 11px; }
 }

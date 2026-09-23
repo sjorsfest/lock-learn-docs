@@ -378,11 +378,45 @@
 </footer>
 
 <div class="modal-overlay" id="launchModal" hidden>
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="launchModalTitle">
+  <div class="modal-card picker" role="dialog" aria-modal="true" aria-labelledby="launchModalTitle">
+    <span class="sheet-grip" aria-hidden="true"></span>
     <button class="modal-close" data-close-modal aria-label="Close">&times;</button>
     <span class="m tint">On the App Store</span>
     <h3 id="launchModalTitle">Pick your app.</h3>
-    <p>Download <a href="https://apps.apple.com/app/lock-learn-trivia-widget/id6787467072">Lock&amp;Learn</a>, <a href="https://apps.apple.com/app/lock-learn-chinese-hsk-words/id6787721399">Lock&amp;Learn Chinese</a>, <a href="https://apps.apple.com/app/lock-learn-japanese-jlpt/id6798328486">Lock&amp;Learn Japanese</a>, <a href="https://apps.apple.com/app/lock-learn-korean-topik/id6798330804">Lock&amp;Learn Korean</a> or <a href="https://apps.apple.com/app/lock-learn-spanish-vocabulary/id6798655905">Lock&amp;Learn Spanish</a> today.</p>
+    <p>Five apps, each free to download on iPhone.</p>
+    <nav class="picks" aria-label="Lock&amp;Learn apps">
+      <a class="pick" data-app="trivia" href="https://apps.apple.com/app/lock-learn-trivia-widget/id6787467072" aria-label="Lock&amp;Learn on the App Store">
+        <span class="pick-e" aria-hidden="true">🧠</span>
+        <span class="pick-t"><b>Trivia</b><small>Verified facts, every glance</small></span>
+        <svg class="pick-go" width="15" height="15" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15 h20 M17 8 l7 7 -7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="pick" data-app="chinese" href="https://apps.apple.com/app/lock-learn-chinese-hsk-words/id6787721399" aria-label="Lock&amp;Learn Chinese on the App Store">
+        <span class="pick-e" aria-hidden="true">🇨🇳</span>
+        <span class="pick-t"><b>Chinese</b><small>HSK 1 to 6 vocabulary</small></span>
+        <svg class="pick-go" width="15" height="15" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15 h20 M17 8 l7 7 -7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="pick" data-app="japanese" href="https://apps.apple.com/app/lock-learn-japanese-jlpt/id6798328486" aria-label="Lock&amp;Learn Japanese on the App Store">
+        <span class="pick-e" aria-hidden="true">🇯🇵</span>
+        <span class="pick-t"><b>Japanese</b><small>JLPT N5 to N1 vocabulary</small></span>
+        <svg class="pick-go" width="15" height="15" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15 h20 M17 8 l7 7 -7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <!-- Arabic temporarily disabled:
+      <a class="pick" data-app="arabic" href="arabic/" aria-label="Lock&amp;Learn Arabic">
+        <span class="pick-e" lang="ar" aria-hidden="true">ض</span>
+        <span class="pick-t"><b>Arabic</b><small>CEFR A1 to C2 vocabulary</small></span>
+        <svg class="pick-go" width="15" height="15" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15 h20 M17 8 l7 7 -7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a> -->
+      <a class="pick" data-app="korean" href="https://apps.apple.com/app/lock-learn-korean-topik/id6798330804" aria-label="Lock&amp;Learn Korean on the App Store">
+        <span class="pick-e" aria-hidden="true">🇰🇷</span>
+        <span class="pick-t"><b>Korean</b><small>TOPIK I and II vocabulary</small></span>
+        <svg class="pick-go" width="15" height="15" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15 h20 M17 8 l7 7 -7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="pick" data-app="spanish" href="https://apps.apple.com/app/lock-learn-spanish-vocabulary/id6798655905" aria-label="Lock&amp;Learn Spanish on the App Store">
+        <span class="pick-e" aria-hidden="true">🇪🇸</span>
+        <span class="pick-t"><b>Spanish</b><small>CEFR A1 to C2 vocabulary</small></span>
+        <svg class="pick-go" width="15" height="15" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 15 h20 M17 8 l7 7 -7 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </nav>
   </div>
 </div>
 
