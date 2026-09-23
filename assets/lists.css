@@ -206,6 +206,7 @@
 .sticky-cta.on { transform: none; }
 .sticky-cta .t { font-size: 13px; line-height: 1.35; color: var(--ink-2); }
 .sticky-cta .btn-store { padding: 11px 18px; font-size: 13px; box-shadow: none; flex: none; }
+.sticky-cta .btn-store svg { width: 13px; height: 16px; margin-top: -2px; }
 @media (min-width: 981px) { .sticky-cta { display: none; } }
 
 /* ------------------------------------------------------------------ quiz */
