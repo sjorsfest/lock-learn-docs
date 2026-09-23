@@ -384,11 +384,50 @@
   .list-hero .hero-grid { gap: 56px; }
   .list-hero .phone-stage { zoom: .82; }
 }
+/* Phones: the page's own content is the hero. A search visitor came for a
+   list, a test or a level picker, so the first screen names the page in
+   the headline and then shows that thing: the hero shrinks to kicker,
+   headline and one short line (no breadcrumb, no phone mock, no buttons),
+   and the first section leads with its content, its head moving below it.
+   The store button lives in the sticky bar, which lists.js shows from the
+   first screen whenever the hero's store row is hidden. */
 @media (max-width: 560px) {
-  .hero.list-hero { padding-bottom: 40px; }
-  .list-hero .hero-grid { gap: 40px; }
-  .list-hero .phone-stage { zoom: .68; }
-  .list-hero .f2 { display: none; }
+  .hero.list-hero { padding: 88px 0 0; }
+  .list-hero .hero-grid { gap: 0; }
+  .list-hero .crumbs, .list-hero .store-row, .list-hero .phone-stage { display: none; }
+  .list-hero .kicker { margin-top: 0; font-size: 10px; }
+  .list-hero h1.display { font-size: 32px; margin-top: 10px; }
+  .list-hero .hero-sub { margin-top: 12px; font-size: 14.5px; line-height: 1.55; }
+  .list-hero + .sec { padding-top: 26px; }
+  .list-hero + .sec > .shell { display: flex; flex-direction: column; }
+  .list-hero + .sec > .shell > .sec-head { order: 2; margin-top: 44px; }
+  .list-hero + .sec .quiz, .list-hero + .sec .tools { margin-top: 0; }
+  .list-hero + .sec .tiles.levels { margin-top: 0; }
+  body:has(.sticky-cta) footer { padding-bottom: 76px; }
+  /* the list: filter and buttons on one line (the placeholder carries the count) */
+  .list-hero + .sec .tools { flex-wrap: nowrap; gap: 8px; padding: 10px 0; }
+  .list-hero + .sec .tools input { flex: 1 1 auto; padding: 10px 16px; }
+  .list-hero + .sec .tools .count { display: none; }
+  .list-hero + .sec .tools .tbtn { padding: 10px 12px; font-size: 10px; letter-spacing: .1em; }
+  /* the test: a tighter card, so the three answers land in the first screen */
+  /* the test page drops its intro line here; the 14-of-20 bar is in the facts under the card */
+  .quiz-hero .hero-sub { display: none; }
+  .q-card { padding: 18px 18px 20px; }
+  .q-word { margin-top: 14px; font-size: 36px; }
+  .q-line { margin-top: 8px; }
+  .q-opts { gap: 8px; margin-top: 10px; }
+  /* the hub: a two-column level picker, glass tiles again */
+  .tiles.levels { grid-template-columns: 1fr 1fr; gap: 10px; border-top: 0; }
+  .tile.level, .tile.level:hover {
+    display: flex; flex-direction: column; padding: 16px 16px 14px; border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,.075) 0%, rgba(255,255,255,.04) 50%, rgba(255,255,255,.028) 100%), var(--w2);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: inset 0 1.5px 0 rgba(255,255,255,.14), 0 12px 28px rgba(0,0,0,.28);
+  }
+  .tile.level .m { font-size: 9px; letter-spacing: .1em; padding-top: 0; }
+  .tile.level h4 { font-size: 22px; line-height: 1.15; margin-top: 8px; }
+  .tile.level p, .tile.level .go { display: none; }
+  .tile.level .count { margin-top: auto; padding-top: 8px; }
 }
 
 /* ------------------------------------------------------------------ quiz phone

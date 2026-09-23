@@ -77,7 +77,11 @@
   // ---- sticky store bar (phones) ------------------------------------------
   const sticky = document.querySelector('.sticky-cta');
   const headRow = document.querySelector('.list-head .store-row, .list-hero .store-row');
-  if (sticky && headRow) {
+  if (sticky && headRow && headRow.offsetParent === null) {
+    // phones hide the hero's store row (lists.css), so the bar carries the
+    // store button from the first screen
+    sticky.classList.add('on');
+  } else if (sticky && headRow) {
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       sticky.classList.toggle('on', !e.isIntersecting && e.boundingClientRect.top < 0);
     }), { threshold: 0 });

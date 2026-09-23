@@ -170,8 +170,9 @@ the index the world tabs (numbers dropped) sit in one row right under the
 phone and the Explore line moves below the button, and the eyebrow is
 hidden there. `site.js` aims the lamp at the visible part of the phone
 (the smaller of the phone and its stage), so the floor pool lands at the
-crop. The generated pages' `.list-hero` is excluded and keeps its own
-phone hero from `lists.css`.
+crop. The generated pages' `.list-hero` is excluded: on phones it drops
+the phone entirely and leads with the page's own content (the list, the
+test or the level picker; see `sitegen/README.md`).
 
 The rest of the page follows the same principle on phones (one media
 block in `site.css`): sections sit closer together, the `.cards3` loop
