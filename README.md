@@ -27,7 +27,9 @@ arabic/index.html     TEMPORARILY DISABLED (2026-08-14, pending extra
                       markers. To re-enable: rename the parked file back,
                       delete the stub, grep the site for that marker and
                       restore each spot (renumber the Korean/Spanish tabs
-                      back to 05/06).
+                      back to 05/06). Neither file carries the Smart App
+                      Banner; add it once the listing is live (see
+                      "Store buttons").
 korean/index.html     Lock&Learn Korean in its taegeuk cobalt world.
 spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
                       reading line anywhere: Spanish cards have none).
@@ -267,11 +269,22 @@ row per live app with the top nav's flag or emoji, its exam line and an
 arrow straight to the listing. On phones it rises as a bottom sheet. A
 flavor that ships adds a `.pick` row next to its nav link.
 
+Every page about one live app also carries Apple's Smart App Banner:
+`<meta name="apple-itunes-app" content="app-id=<id>">` on the line after
+`theme-color`, which makes Safari on iPhone show its native Get bar for that
+app (no `app-argument`: the apps have no web-to-app routes). The product
+pages (`trivia/`, `chinese/`, `japanese/`, `korean/`, `spanish/`) carry it
+by hand; the generated pages get it from `app_store_id` in
+`sitegen/flavors.py` (see `sitegen/README.md`, "Smart App Banner"). The
+family and legal pages carry none, and neither does Arabic while it is off
+the store.
+
 When a listing goes live, swap that page's two `<button>`s for `<a href>`s,
-drop the date from the store note, delete the page's modal markup, set
-`live=True` and the `store_url` on that flavor in `sitegen/flavors.py` and
-run `make site-pages` (its generated pages carry the same button state and
-modal), and update the same app's `app_store_url` in `teaser/config.py`
+drop the date from the store note, delete the page's modal markup, add the
+Smart App Banner tag with the app's id, set `live=True`, the `store_url` and
+the `app_store_id` on that flavor in `sitegen/flavors.py` and
+run `make site-pages` (its generated pages carry the same button state,
+modal and banner), and update the same app's `app_store_url` in `teaser/config.py`
 (the ones that are still `id0000000000` are the apps that have not
 shipped). When the last
 app is out, the index's picker still needs the modal JS block in
