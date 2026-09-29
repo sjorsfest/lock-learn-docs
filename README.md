@@ -41,7 +41,16 @@ spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
                       (chinese/hsk-vocabulary, japanese/jlpt-vocabulary,
                       korean/topik-vocabulary). Spanish is parked until its
                       word-list license is cleared (sitegen/README.md).
-                      Never hand-edit these.
+                      Since 2026-09-28 also, per flavor: an exam explainer
+                      (chinese/hsk-levels, japanese/jlpt-levels,
+                      korean/topik-levels), a theme hub
+                      (basic-<language>-words) with one thematic list per
+                      topic (numbers-in-japanese, korean-numbers,
+                      colors-in-chinese, family-in-korean …), a downloads
+                      page (<free level>-anki-deck) whose files live in
+                      <flavor>/downloads/ (built by `make site-exports`,
+                      committed binaries), and for Korean
+                      most-common-korean-words. Never hand-edit these.
 assets/lists.css      Styles for the generated pages only (table,
 assets/lists.js       flashcard mode, sample panels, the practice quiz
                       played with the app's beats and celebrations, the
@@ -195,14 +204,17 @@ in `sitegen/flavors.py`; the how and why, including the publication policy
 (the free level of each flavor in full with sentences; paid levels as a
 50-word preview with a blurred teaser and app CTA, plus 25 sample sentences;
 no trivia facts), are in `sitegen/README.md`. Every footer, hand-written and
-generated, carries "Word lists" and "Practice tests" columns linking the
-three hubs and the three free-level tests.
+generated, carries a "Word lists" column (the three level hubs and the three
+"basic <language> words" topic hubs) and an "Exam prep" column (the three
+free-level tests and the three "<exam> levels explained" pages; renamed from
+"Practice tests" on 2026-09-29).
 After any content export: `make site-pages`, commit the regenerated pages,
 `sitegen/manifest.json` and `sitemap.xml` together.
 
 The product pages link into them: the `.packs` chips in each "Levels"
 section are links to the level pages, a second `.packs-note` line links the
-hub and the free level's quiz, and the index carries a "Free word lists" line
+hub, the free level's quiz and (Chinese, Japanese, Korean) the basic-words
+topic hub, and the index carries a "Free word lists" line
 under the family grid (the Spanish page keeps plain chips while its lists
 are parked). Keep those links in step when a slug changes.
 
