@@ -17,19 +17,9 @@ index.html            Family overview. Editorial hero with a world switcher:
 trivia/index.html     Lock&Learn (trivia) in its indigo/mint world.
 chinese/index.html    Lock&Learn Chinese in its cinnabar world.
 japanese/index.html   Lock&Learn Japanese in its aizome indigo world.
-arabic/index.html     TEMPORARILY DISABLED (2026-08-14, pending extra
-                      research before relaunch): index.html is a noindex
-                      redirect-to-home stub; the real oasis-teal page is
-                      parked as arabic/index.disabled.html. Every Arabic
-                      link, the hero tab/wall layer, the app card, the
-                      site.js ORDER entry and the sitemap entry are
-                      commented out with "Arabic temporarily disabled"
-                      markers. To re-enable: rename the parked file back,
-                      delete the stub, grep the site for that marker and
-                      restore each spot (renumber the Korean/Spanish tabs
-                      back to 05/06). Neither file carries the Smart App
-                      Banner; add it once the listing is live (see
-                      "Store buttons").
+arabic/index.html     Lock&Learn Arabic in its oasis teal world (parked
+                      2026-08-14, re-enabled 2026-10-01 once the app was
+                      live on the store).
 korean/index.html     Lock&Learn Korean in its taegeuk cobalt world.
 spanish/index.html    Lock&Learn Spanish in its saffron amber world (no
                       reading line anywhere: Spanish cards have none).
@@ -86,8 +76,7 @@ favicon.ico           apple-touch-icon.png (180px, opaque) are baked from
                       pages keep their tinted data-URI tab icons and link
                       only the touch icon; Google takes the search-result
                       favicon from the index page.
-sitemap.xml           Every live page with lastmod dates (the Arabic entry
-                      is commented out while the app is disabled). Bump
+sitemap.xml           Every live page with lastmod dates. Bump
                       lastmod for pages you change before publishing. The
                       block between the generated:start / generated:end
                       comments is owned by sitegen/build.py; edit nothing
@@ -185,6 +174,16 @@ crop. The generated pages' `.list-hero` is excluded: on phones it drops
 the phone entirely and leads with the page's own content (the list, the
 test or the level picker; see `sitegen/README.md`).
 
+The top nav (six apps plus Support) has three widths, set in `site.css`
+(2026-10-01, measured to clear the wordmark at every width from 360px up):
+above 880px every link shows its flag; from 721 to 880px the flags drop
+and the links are bare labels; at 720px and under only Support stays (the
+footer lists every app). Links never wrap inside themselves
+(`white-space: nowrap`), so a flag cannot stack over its label. The index's six world
+tabs drop their 01-06 numbers where the copy column is narrowest (561 to
+700px and 981 to 1100px, as on phones) so they stay on one row. A seventh
+app needs these breakpoints measured again.
+
 The rest of the page follows the same principle on phones (one media
 block in `site.css`): sections sit closer together, the `.cards3` loop
 cards and the index's `.family` app cards become swipeable scroll-snap
@@ -267,10 +266,10 @@ Each page's two `.store-row`s carry an App Store button, in one of two
 states depending on whether that app is live:
 
 - **Live** (trivia, chinese, japanese, korean since 2026-09-01, spanish
-  since 2026-09-14): an `<a class="btn-store" href>` straight to the
+  since 2026-09-14, arabic since 2026-10-01): an `<a class="btn-store" href>` straight to the
   listing, with a plain `Free on iOS` note. Those pages have no
   `#launchModal` markup at all.
-- **Not live yet** (none at the moment; arabic is parked, see above): a
+- **Not live yet** (none at the moment): a
   `<button data-open-modal="launch">` opening the `#launchModal` overlay
   (markup at the end of `<body>`, behavior in `assets/site.js`), with a
   `launching <date>` note and a per-app line in the modal.
@@ -285,11 +284,10 @@ Every page about one live app also carries Apple's Smart App Banner:
 `<meta name="apple-itunes-app" content="app-id=<id>">` on the line after
 `theme-color`, which makes Safari on iPhone show its native Get bar for that
 app (no `app-argument`: the apps have no web-to-app routes). The product
-pages (`trivia/`, `chinese/`, `japanese/`, `korean/`, `spanish/`) carry it
-by hand; the generated pages get it from `app_store_id` in
-`sitegen/flavors.py` (see `sitegen/README.md`, "Smart App Banner"). The
-family and legal pages carry none, and neither does Arabic while it is off
-the store.
+pages (`trivia/`, `chinese/`, `japanese/`, `arabic/`, `korean/`,
+`spanish/`) carry it by hand; the generated pages get it from `app_store_id`
+in `sitegen/flavors.py` (see `sitegen/README.md`, "Smart App Banner"). The
+family and legal pages carry none.
 
 When a listing goes live, swap that page's two `<button>`s for `<a href>`s,
 drop the date from the store note, delete the page's modal markup, add the
