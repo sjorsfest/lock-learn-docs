@@ -248,6 +248,14 @@ data; add `aggregateRating` only if real App Store ratings exist.
 ## Standing copy rules
 
 - No em dashes anywhere.
+- Plans and the free tier, as the apps sell them (2026-10-12): Lock&Learn+
+  is a monthly or a yearly plan (the yearly starts with a 3-day free trial
+  in the language apps; trivia has none). The lifetime unlock is no longer
+  sold; earlier buyers keep it, so the site never offers it. The language
+  apps' first level is free in full and every other level is a fixed free
+  preview (no daily drip); only trivia unlocks another question each day.
+  Don't promise a widget pace ("every 15 minutes"): the free plan's Lock
+  Screen changes word at most every five hours.
 - No content counts ("4,991 words") in marketing copy; topic and level
   *names* are fine. Monthly updates are part of the promise. Documented
   exception: the generated list, hub and quiz pages state exact list sizes
